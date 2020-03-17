@@ -71,5 +71,6 @@ export const authService = new AuthService(
     strategyName,
     scope,
     loginRoute,
+    configuration.secret,
     middleware
 );

@@ -14,12 +14,12 @@ app.use("/api", apiRouter);
 
 app.get("/", (req: Request, res: Response) => res.send("Hi!"));
 
-app.get(
+app.post(
     "/test",
-    authService.ensureLogin,
+    authService.ensureAuthorized,
     authService.refreshToken,
     (req, res) => {
-        res.send("TESTING ");
+        res.send(req.user);
     }
 );
 
@@ -27,7 +27,7 @@ app.get(
     try {
         await db.init();
 
-        app.listen(PORT, () => console.log(`HTTP Server Listening on ${PORT}`));
+        app.listen(PORT, () => console.log(`Server Listening on ${PORT}`));
     } catch (e) {
         console.log(e);
     }

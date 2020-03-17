@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
+import { FileFilterCallback } from "multer";
 import { authService } from "../authorization";
 import { join, extname } from "path";
 import { unlink } from "fs";
@@ -11,30 +12,30 @@ import * as multer from "multer";
  */
 
 export const router = express.Router();
-const fileFilter = (req, file, cb) =>
-    extname(file.originalname) == ".FIT" ? cb(null, true) : cb(null, false);
+const fileFilter = (
+    req: Request,
+    file: Express.Multer.File,
+    cb: FileFilterCallback
+) => (extname(file.originalname) == ".FIT" ? cb(null, true) : cb(null, false));
 
 const upload = multer({ dest: "uploads/", fileFilter: fileFilter });
 
-const handleFileUpload = async (req: Request, res: Response) => {
-    // const { id, token } = req.params;
-    // if (!id || !token) {
-    //     res.status(400).json({ error: "BAD REQUEST", params: {id:id, token:token} });
-    // }
+const handleFileUpload = async (req: Request, res: Response, next) => {
     if (!req.file) {
-        console.log("No file in request!");
-        res.json({
-            error: "BAD REQUEST"
+        res.status(400).json({
+            error: "BAD REQUEST",
+            message: { file: req.file }
         });
         return;
     }
     const { accessToken, id } = <IUser>req.user;
     console.log(`Processing file for ${id}`);
+
     const { path, originalname } = req.file;
     const file = join(__dirname, path);
     const dataType = extname(originalname).replace(".", "");
 
-    console.log(`Sending ${file} to strava`);
+    console.log(`Sending ${file} to strava ${id}`);
 
     // @ts-ignore: property `uploads` does not exist
     // Why did I ever think using TS was a good idea???
@@ -45,20 +46,26 @@ const handleFileUpload = async (req: Request, res: Response) => {
             file: file
         },
         (err, payload) => {
+            // TODO: remove this....
             if (err) console.log(err);
         }
     );
+
+    // Delete the temp file.
     unlink(file, (e) => {
         if (e) console.log(e);
-        console.log(`${file} was deleted`);
+        console.log(`${file} deleted`);
     });
-    res.json(response);
+
+    // res.json(response);
+    next();
 };
 
 router.post(
-    "/api/upload",
-    // authService.ensureLogin,
-    // authService.refreshToken,
+    "/upload",
+    authService.ensureAuthorized,
+    authService.refreshToken,
     upload.single("file"),
-    handleFileUpload
+    handleFileUpload,
+    (req, res) => res.send("yup")
 );
