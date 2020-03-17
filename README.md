@@ -1,13 +1,13 @@
 # strava-upload
 
-Easily upload files to Strava through the strava-upload-cli(Coming soon™️...), or through the web portal (Also coming soon™️...).
+Easily upload files to Strava through the strava-upload-cli(Coming soon&trade;...), or through the web portal (Also coming soon&trade;...).
 
 ## How to use
 Start the OAuth flow by making a `GET` request to 
 
 `/oauth/strava`
 
-Authenticate with Strava and give the app permission to upload files to your profile. If using the website (Soon™️) you can now upload your files :D. 
+Authenticate with Strava and give the app permission to upload files to your profile. If using the website (Soon&trade;️) you can now upload your files :D. 
 
 ### Get a token
 > Keep this token private, tokens may expire and have limits in the future.
