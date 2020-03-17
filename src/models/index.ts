@@ -7,7 +7,6 @@ const sequelize = new Sequelize(configuration.databaseURL, {
     dialectOptions: { ssl: true }
 });
 
-// Define our model.
 UserModel.init(
     {
         id: {
