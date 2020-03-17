@@ -1,4 +1,5 @@
 import { extname } from "path";
+import { unlink } from "fs";
 // const fileFilter = (
 //     req: Request,
 //     file: Express.Multer.File,
@@ -17,6 +18,13 @@ export const isFileSupported = (fileName: string) => {
 
     return allowed.includes(extension);
 };
+export const deleteTempFile = (file: string) => {
+    unlink(file, (e) => {
+        if (e) console.log(e);
+        console.log(`${file} deleted`);
+    });
+};
+
 // const handleFileUpload = async (req: Request, res: Response) => {
 //     if (!req.file) {
 //         res.status(400).json({

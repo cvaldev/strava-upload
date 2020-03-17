@@ -11,6 +11,6 @@
             "typings/*": ["src/typings/*"]
         }
     },
-    "include": ["src/**/*.ts", "index.ts"],
-    "exclude": ["src/test/**/*.spec.ts"]
+    "include": ["src/**/*.ts", "app.ts", "server.ts"],
+    "exclude": ["src/test/*"]
 }
