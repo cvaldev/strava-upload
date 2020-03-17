@@ -26,6 +26,8 @@ Set the header `Authorization: Bearer <access_token>`.
 
 Supported File Types:
 - FIT
+- TCX
+- GPX
 
 ## Running your own version
 

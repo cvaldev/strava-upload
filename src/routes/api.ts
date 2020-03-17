@@ -7,7 +7,7 @@ import { tmpdir } from "os";
 import * as strava from "strava-v3";
 import * as express from "express";
 import * as multer from "multer";
-
+import { isFileSupported } from "../utils";
 /**
  * API access points
  */
@@ -17,7 +17,7 @@ const fileFilter = (
     req: Request,
     file: Express.Multer.File,
     cb: FileFilterCallback
-) => (extname(file.originalname) == ".FIT" ? cb(null, true) : cb(null, false));
+) => (isFileSupported(file.originalname) ? cb(null, true) : cb(null, false));
 
 const upload = multer({ dest: tmpdir(), fileFilter: fileFilter });
 
