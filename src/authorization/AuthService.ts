@@ -52,7 +52,7 @@ export class AuthService {
             res.json({ token: token });
             return;
         }
-        next();
+        return next();
     };
 
     // Makes sure the user's tokens stay updated in our db.
@@ -82,25 +82,14 @@ export class AuthService {
                         });
                     }
                     await db.update(user, accessToken, refreshToken);
-                    console.log(`${user.id} updated`);
                 }
             );
 
             req.user = user;
-            console.log(`req.user updated ${user.id}`);
+            console.log(`${user.id} updated`);
         }
 
         return next();
-    };
-
-    // Ensures the user is logged in.
-    public ensureLogin = (req: Request, res: Response, next: NextFunction) => {
-        console.log("Checking log in");
-        if (req.isAuthenticated()) {
-            console.log("Authenticated!");
-            return next();
-        }
-        res.redirect(this._loginRoute);
     };
 
     // Ensure the user is authorized to use this route
@@ -118,6 +107,16 @@ export class AuthService {
             // Use session
             return this.ensureLogin(req, res, next);
         }
+    };
+
+    // Ensures the user is logged in.
+    public ensureLogin = (req: Request, res: Response, next: NextFunction) => {
+        console.log("Checking log in");
+        if (req.isAuthenticated()) {
+            console.log("Authenticated!");
+            return next();
+        }
+        res.redirect(this._loginRoute);
     };
 
     // Verify the jwt
@@ -138,16 +137,16 @@ export class AuthService {
                 if (user) {
                     // Load the user in the request and move on.
                     req.user = user;
-                    next();
+                    return next();
                 }
             } catch (e) {
                 res.status(403).send(e);
                 return;
             }
         }
-
         // Deny entry if bad token or no user in db.
         res.sendStatus(403);
+        return;
     };
 
     // Create a jwt

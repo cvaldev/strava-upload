@@ -43,9 +43,7 @@ export const update = (
         { accessToken: accessToken, refreshToken: refreshToken },
         {
             where: {
-                id: user.id,
-                accessToken: user.accessToken,
-                refreshToken: user.refreshToken
+                id: user.id
             }
         }
     );

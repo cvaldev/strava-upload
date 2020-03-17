@@ -30,8 +30,17 @@ const strategy = new Strategy(
         const user = new User(accessToken, refreshToken, profile);
         try {
             const [found] = await db.findOrCreate(user);
+
+            if (
+                found.accessToken !== accessToken ||
+                found.refreshToken !== refreshToken
+            ) {
+                // Update user if renewing auth.
+                await db.update(user, accessToken, refreshToken);
+            }
             return done(null, found);
         } catch (e) {
+            console.log(e);
             return done(e, null);
         }
     }
