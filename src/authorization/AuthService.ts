@@ -62,34 +62,27 @@ export class AuthService {
         next: NextFunction
     ) => {
         const user = <IUser>req.user;
-        console.log(`Refreshing token for ${user.id}`);
-        // TODO: this shouldn't be here, maybe create an instance of the post request and repeat it if 1st time was unsuccesful.
-        const response = await fetch("https://www.strava.com/api/v3/athlete", {
-            headers: { Authorization: `Bearer ${user.accessToken}` }
-        });
 
-        if (!response.ok) {
-            // Our token has possibly expired, try to refresh it.
-            // TODO: make sure token has expired and we still have permissions.
-            // Can I just request a new one everytime anyways?
-            refresh.requestNewAccessToken(
-                this._name,
-                user.refreshToken,
-                async (err, accessToken, refreshToken) => {
-                    if (err || !accessToken) {
-                        res.status(401).json({
-                            error: err ?? "An error occurred"
-                        });
-                    }
+        refresh.requestNewAccessToken(
+            this._name,
+            user.refreshToken,
+            async (err, accessToken, refreshToken) => {
+                console.log(`${user.id} refreshing `);
+                if (err || !accessToken) {
+                    res.status(401).json({
+                        error: err ?? "An error occurred"
+                    });
+                } else if (
+                    user.accessToken !== accessToken ||
+                    user.refreshToken !== refreshToken
+                ) {
                     await db.update(user, accessToken, refreshToken);
+                    req.user = user;
+                    console.log(`${user.id} updated`);
                 }
-            );
-
-            req.user = user;
-            console.log(`${user.id} updated`);
-        }
-
-        return next();
+                return next();
+            }
+        );
     };
 
     // Ensure the user is authorized to use this route

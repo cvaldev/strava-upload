@@ -37,11 +37,11 @@ const handleFileUpload = async (req: Request, res: Response) => {
         return;
     }
 
-    const { accessToken, id, refreshToken } = <IUser>req.user;
+    const { accessToken, id } = <IUser>req.user;
     const { path: file, originalname } = req.file;
     const dataType = extname(originalname).replace(".", "");
     try {
-        console.log(`Sending ${file} to strava ${id}`);
+        console.log(`${id} sending ${file}`);
 
         // @ts-ignore: property `uploads` does not exist
         // Why did I ever think using TS was a good idea???
@@ -63,7 +63,7 @@ const handleFileUpload = async (req: Request, res: Response) => {
 router.post(
     "/upload",
     authService.ensureAuthorized,
-    // authService.refreshToken,
+    authService.refreshToken,
     upload.single("file"),
     handleFileUpload
 );
