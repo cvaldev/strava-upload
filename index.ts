@@ -12,7 +12,7 @@ app.use(authService.middleware);
 app.use("/oauth/strava", authRouter);
 app.use("/api", apiRouter);
 
-app.get("/", (req: Request, res: Response) => res.send("Hi!"));
+app.get("/", (req: Request, res: Response) => res.send("Coming soon!"));
 
 app.post(
     "/test",
