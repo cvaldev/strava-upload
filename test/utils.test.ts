@@ -21,7 +21,6 @@ describe("deleteTempFile()", () => {
     afterEach(mock.restore);
 
     test("Can delete a file", () => {
-        expect(existsSync(file)).toBe(true);
         deleteTempFile(file);
         expect(existsSync(file)).toBe(false);
     });

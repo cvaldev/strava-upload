@@ -9,15 +9,13 @@ import * as express from "express";
 export const router = express.Router();
 
 router.get("/", (req: Request, res: Response, next: NextFunction) => {
-    const { state } = req.query;
+    const state = req.query?.state;
     return authService.login(state)(req, res, next);
 });
 
 router.get(
     "/redirect",
-    authService.verifyRedirect(),
+    authService.verifyRedirect,
     authService.handleRedirect,
-    (req: Request, res: Response) => {
-        res.send("You may close this tab!");
-    }
+    (req: Request, res: Response) => res.send("You may close this tab!")
 );

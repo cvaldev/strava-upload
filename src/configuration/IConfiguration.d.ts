@@ -1,4 +1,5 @@
 interface IConfiguration {
+    env: string;
     clientID: string;
     clientSecret: string;
     callbackURL: string;

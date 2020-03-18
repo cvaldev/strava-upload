@@ -5,6 +5,7 @@ config();
  * Server configuration.
  */
 export const configuration: IConfiguration = {
+    env: process.env.NODE_ENV,
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: process.env.CALLBACK_URL,

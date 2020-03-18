@@ -1,4 +1,4 @@
-import { authService } from "../src/authorization";
+import { authService } from "../../src/authorization";
 import * as passport from "passport";
 import * as jsonwebtoken from "jsonwebtoken";
 

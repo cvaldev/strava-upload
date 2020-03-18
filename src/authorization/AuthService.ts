@@ -1,9 +1,9 @@
 import * as passport from "passport";
 import * as refresh from "passport-oauth2-refresh";
-import * as fetch from "node-fetch";
 import * as db from "../models";
 import { sign, verify } from "jsonwebtoken";
 import { Handler, Request, Response, NextFunction } from "express";
+import { configuration } from "../configuration";
 
 /**
  * AuthService defines the needed functions to authenticate and verify a user.
@@ -48,7 +48,7 @@ export class AuthService {
         const { state, scope } = req.query;
         const requiredScope = "read," + this._scope;
         console.log("Scope: " + (scope === requiredScope));
-        if (state === "tokenize") {
+        if (state === "tokenize" && req.user) {
             // Extract user id from req.user
             const { id } = <IUser>req.user;
 
@@ -171,7 +171,16 @@ export class AuthService {
     };
 
     // Check if authentication was accepted by user during first redirect.
-    public verifyRedirect = (): any => {
-        return this.authenticate({ failureRedirect: this._loginRoute });
+    public verifyRedirect = (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): any => {
+        if (configuration.env == "test") return next();
+        return this.authenticate({ failureRedirect: this._loginRoute })(
+            req,
+            res,
+            next
+        );
     };
 }
