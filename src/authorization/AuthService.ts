@@ -33,7 +33,12 @@ export class AuthService {
     public get middleware(): Handler[] {
         return this._middleware;
     }
-
+    public get name(): string {
+        return this._name;
+    }
+    public get scope(): string {
+        return this._scope;
+    }
     // Decides what happens after the user authenticates for the first time.
     public handleRedirect = async (
         req: Request,

@@ -8,9 +8,5 @@ export const isFileSupported = (fileName: string) => {
     return allowed.includes(extension);
 };
 
-export const deleteTempFile = (file: string) => {
-    unlink(file, (e) => {
-        if (e) console.log(e);
-        console.log(`${file} deleted`);
-    });
-};
+export const deleteTempFile = (file: string) =>
+    unlink(file, (e) => (e ? e : `${file} deleted`));

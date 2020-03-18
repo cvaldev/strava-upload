@@ -44,7 +44,7 @@ const handleFileUpload = async (req: Request, res: Response) => {
                 data_type: dataType,
                 file: file
             },
-            () => deleteTempFile(file)
+            () => console.log(deleteTempFile(file))
         );
 
         res.json(payload);
