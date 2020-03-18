@@ -12,13 +12,4 @@ app.use("/api", apiRouter);
 
 app.get("/", (req: Request, res: Response) => res.send("Coming soon!"));
 
-app.post(
-    "/test",
-    authService.ensureAuthorized,
-    authService.refreshToken,
-    (req, res) => {
-        res.send(req.user);
-    }
-);
-
 export default app;

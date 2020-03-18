@@ -1,4 +1,6 @@
-import { isFileSupported } from "../src/utils";
+import { isFileSupported, deleteTempFile } from "../src/utils";
+import * as mock from "mock-fs";
+import { existsSync } from "fs";
 
 describe("isFileSupported()", () => {
     const extensions = [".FIT", ".TCX", ".GPX"];
@@ -10,5 +12,16 @@ describe("isFileSupported()", () => {
 });
 
 describe("deleteTempFile()", () => {
-    // test.only()
+    const file = "foo/bar.fit";
+    beforeEach(() => {
+        mock({
+            [file]: "contents"
+        });
+    });
+    afterEach(mock.restore);
+    test("Can delete a file", () => {
+        expect(existsSync(file)).toBe(true);
+        deleteTempFile(file);
+        expect(existsSync(file)).toBe(false);
+    });
 });

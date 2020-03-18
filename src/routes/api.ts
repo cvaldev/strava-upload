@@ -2,17 +2,17 @@ import { Request, Response } from "express";
 import { FileFilterCallback } from "multer";
 import { authService } from "../authorization";
 import { extname } from "path";
-import { unlink } from "fs";
 import { tmpdir } from "os";
 import * as strava from "strava-v3";
 import * as express from "express";
 import * as multer from "multer";
-import { isFileSupported } from "../utils";
+import { isFileSupported, deleteTempFile } from "../utils";
 /**
  * API access points
  */
 
 export const router = express.Router();
+
 const fileFilter = (
     req: Request,
     file: Express.Multer.File,
@@ -20,13 +20,6 @@ const fileFilter = (
 ) => (isFileSupported(file.originalname) ? cb(null, true) : cb(null, false));
 
 const upload = multer({ dest: tmpdir(), fileFilter: fileFilter });
-
-const deleteTempFile = (file: string) => {
-    unlink(file, (e) => {
-        if (e) console.log(e);
-        console.log(`${file} deleted`);
-    });
-};
 
 const handleFileUpload = async (req: Request, res: Response) => {
     if (!req.file) {
