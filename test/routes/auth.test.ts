@@ -2,8 +2,8 @@ import { router } from "../../src/routes/auth";
 import * as express from "express";
 import * as request from "supertest";
 import * as passport from "passport";
-const app = express();
 
+const app = express();
 app.use(router);
 
 afterEach(jest.restoreAllMocks);
@@ -20,6 +20,7 @@ describe("/", () => {
         expect(spy).toHaveBeenCalled();
     });
 });
+
 describe("/redirect", () => {
     test("Can GET /redirect", async () => {
         jest.spyOn(

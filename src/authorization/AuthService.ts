@@ -3,7 +3,6 @@ import * as refresh from "passport-oauth2-refresh";
 import * as db from "../models";
 import { sign, verify } from "jsonwebtoken";
 import { Handler, Request, Response, NextFunction } from "express";
-import { configuration } from "../configuration";
 
 /**
  * AuthService defines the needed functions to authenticate and verify a user.
@@ -65,30 +64,39 @@ export class AuthService {
         res: Response,
         next: NextFunction
     ) => {
-        const user = <IUser>req.user;
-
-        refresh.requestNewAccessToken(
-            this._name,
-            user.refreshToken,
-            async (err, accessToken, refreshToken) => {
-                console.log(`${user.id} refreshing `);
-                if (err || !accessToken) {
-                    res.status(401).json({
-                        error: err ?? "An error occurred"
-                    });
-                } else if (
-                    user.accessToken !== accessToken ||
-                    user.refreshToken !== refreshToken
-                ) {
-                    await db.update(user, accessToken, refreshToken);
-                    req.user = user;
-                    console.log(`${user.id} updated`);
-                }
-                return next();
-            }
-        );
+        try {
+            const user = await this.updateAccessToken(<IUser>req.user);
+            req.user = user;
+            return next();
+        } catch (error) {
+            return res.status(401).send(error);
+        }
     };
 
+    public updateAccessToken = (user: IUser) => {
+        return new Promise((resolve, reject) => {
+            refresh.requestNewAccessToken(
+                this._name,
+                user.refreshToken,
+                async (err, accessToken, refreshToken) => {
+                    console.log(`${user.id} refreshing `);
+                    if (err || !accessToken) {
+                        reject({
+                            error: err ?? "An error occurred"
+                        });
+                    } else if (
+                        user.accessToken !== accessToken ||
+                        user.refreshToken !== refreshToken
+                    ) {
+                        await db.update(user, accessToken, refreshToken);
+                        resolve(db.find(user.id));
+                        console.log(`${user.id} updated`);
+                    }
+                    resolve(user);
+                }
+            );
+        });
+    };
     // Ensure the user is authorized to use this route
     public ensureAuthorized = (
         req: Request,
@@ -172,7 +180,6 @@ export class AuthService {
         res: Response,
         next: NextFunction
     ): any => {
-        // if (configuration.env == "test") return next();
         return this.authenticate({ failureRedirect: this._loginRoute })(
             req,
             res,

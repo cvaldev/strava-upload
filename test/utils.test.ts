@@ -1,5 +1,5 @@
 import { isFileSupported, deleteTempFile } from "../src/utils";
-import * as mock from "mock-fs";
+import * as mockFs from "mock-fs";
 import { existsSync } from "fs";
 
 describe("isFileSupported()", () => {
@@ -14,11 +14,11 @@ describe("isFileSupported()", () => {
 describe("deleteTempFile()", () => {
     const file = "foo/bar.fit";
     beforeEach(() => {
-        mock({
+        mockFs({
             [file]: "contents"
         });
     });
-    afterEach(mock.restore);
+    afterEach(mockFs.restore);
 
     test("Can delete a file", () => {
         deleteTempFile(file);
