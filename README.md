@@ -12,7 +12,7 @@ Authenticate with Strava and give permission to upload files to your profile. If
 ### Get a token
 > Keep this token private, tokens may expire and have limits in the future.
 
-By default we use sessions to maintain a user authenticated, but if you need an access token you can request it at:
+By default, sessions are used to maintain a user authenticated, but if you need an access token you can request it at:
 
 `/oauth/strava?state=tokenize`
 
