@@ -1,6 +1,6 @@
 # strava-upload
 
-Easily upload files to Strava through the strava-upload-cli(Coming soon&trade;...), or through the web portal (Also coming soon&trade;...).
+Easily upload files to Strava through the strava-upload-cli(Coming soon&trade;...), or through the web (Also coming soon&trade;...).
 
 ## How to use
 Start the OAuth flow by making a `GET` request to 
