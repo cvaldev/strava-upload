@@ -4,6 +4,7 @@
     "description": "",
     "main": "dist/index.js",
     "scripts": {
+        "test": "jest",
         "build": "rimraf dist && tsc",
         "start": "node dist/server.js",
         "postinstall": "npm run build"
