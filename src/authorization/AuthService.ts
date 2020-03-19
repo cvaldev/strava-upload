@@ -172,7 +172,7 @@ export class AuthService {
         res: Response,
         next: NextFunction
     ): any => {
-        if (configuration.env == "test") return next();
+        // if (configuration.env == "test") return next();
         return this.authenticate({ failureRedirect: this._loginRoute })(
             req,
             res,
