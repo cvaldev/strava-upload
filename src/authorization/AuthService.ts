@@ -128,7 +128,6 @@ export class AuthService {
             const [type, token] = authorization.split(" ");
             try {
                 const data = verify(token, this._secret);
-
                 // @ts-ignore: id doesn't exist
                 const user = await db.find(data.id);
                 if (user) {
@@ -137,7 +136,7 @@ export class AuthService {
                     return next();
                 }
             } catch (e) {
-                return res.status(403).send(e);
+                return res.sendStatus(403);
             }
         }
         // Deny entry if bad token or no user in db.

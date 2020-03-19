@@ -1,10 +1,8 @@
 import { authService } from "../../src/authorization";
+import * as db from "../../src/models";
 import * as passport from "passport";
 import * as jsonwebtoken from "jsonwebtoken";
-import * as refresh from "passport-oauth2-refresh";
-import * as db from "../../src/models";
 import { Request, Response, NextFunction } from "express";
-import { UserModel } from "../../src/models/UserModel";
 
 const name = authService.name;
 const scope = authService.scope;
@@ -23,7 +21,13 @@ afterEach(() => {
     res = <Response>{};
     next = <NextFunction>jest.fn();
     req.isAuthenticated = jest.fn();
-    jest.clearAllMocks();
+    jest.restoreAllMocks();
+});
+
+test("Can create a jwt token from id", () => {
+    const spy = jest.spyOn(jsonwebtoken, "sign");
+    authService.getJwt(0);
+    expect(spy.mock.calls[0]).toContainEqual({ id: 0 });
 });
 
 describe("login", () => {
@@ -80,27 +84,35 @@ describe("ensureLogin", () => {
         expect(next).toHaveBeenCalled();
     });
 });
-// describe("verifyToken", () => {
-// test("Can verify a jwt token", async () => {
-//     const spy = jest
-//         .spyOn(jsonwebtoken, "verify")
-//         .mockImplementation(() => {
-//             id: 0;
-//         });
-//     // jest.mock("../../src/models/index", () => {
-//     //     return {
-//     //         __esModule: true,
-//     //         find: jest.fn().mockReturnValue({ id: 0 })
-//     //     };
-//     // });
-//     const spy2 = jest.spyOn(db, "find");
-//     req.headers = { authorization: "Bearer 0000" };
-//     await authService.verifyToken(req, res, next);
 
-//     expect(spy).toHaveBeenCalled();
-//     // expect(spy2).toHaveBeenCalled();
-// });
-// });
+describe("verifyToken", () => {
+    test("Can verify a jwt token", async () => {
+        jest.spyOn(jsonwebtoken, "verify").mockImplementation(() => ({
+            id: 0
+        }));
+        jest.spyOn(db, "find").mockReturnValue(true);
+
+        req.headers = { authorization: "Bearer 0000" };
+        await authService.verifyToken(req, res, next);
+
+        expect(next).toHaveBeenCalled();
+    });
+    test("Denies access if invalid token", async () => {
+        res.sendStatus = jest.fn().mockReturnValue("denied");
+        req.headers = { authorization: "Bearer invalid" };
+        const result = await authService.verifyToken(req, res, next);
+
+        expect(result).toBe("denied");
+    });
+
+    test("Denies access if no token is provided", async () => {
+        res.sendStatus = jest.fn().mockReturnValue("denied");
+        const result = await authService.verifyToken(req, res, next);
+
+        expect(result).toBe("denied");
+    });
+});
+
 describe("handleRedirect", () => {
     test("Can pass to next", (done) => {
         const next = <NextFunction>jest.fn(done);
@@ -118,10 +130,4 @@ describe("handleRedirect", () => {
         expect(spy).toHaveBeenCalled();
         expect(result).toBe("token");
     });
-});
-
-test("Can create a jwt token from id", () => {
-    const spy = jest.spyOn(jsonwebtoken, "sign");
-    authService.getJwt(0);
-    expect(spy.mock.calls[0]).toContainEqual({ id: 0 });
 });

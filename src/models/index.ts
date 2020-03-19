@@ -28,7 +28,6 @@ export const create = (user: IUser) => UserModel.create(user);
 
 // Find a single user.
 export const find = (id: number) => UserModel.findOne({ where: { id: id } });
-
 // Attempt to find the user or create a new instance.
 export const findOrCreate = (user: IUser) =>
     UserModel.findOrCreate({ where: { id: user.id }, defaults: user });
