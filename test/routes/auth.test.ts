@@ -2,7 +2,6 @@ import { router } from "../../src/routes/auth";
 import * as express from "express";
 import * as request from "supertest";
 import * as passport from "passport";
-import { authService } from "../../src/authorization";
 
 const app = express();
 

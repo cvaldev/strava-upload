@@ -40,7 +40,7 @@ export class AuthService {
         return this._scope;
     }
     // Decides what happens after the user authenticates for the first time.
-    public handleRedirect = async (
+    public handleRedirect = (
         req: Request,
         res: Response,
         next: NextFunction
@@ -54,8 +54,7 @@ export class AuthService {
 
             // Create a jwt and send it back in the response.
             const token = this.getJwt(id);
-            res.json({ token: token });
-            return;
+            return res.json({ token: token });
         }
         return next();
     };
@@ -114,7 +113,7 @@ export class AuthService {
             console.log("Authenticated!");
             return next();
         }
-        res.redirect(this._loginRoute);
+        return res.redirect(this._loginRoute);
     };
 
     // Verify the jwt
@@ -138,13 +137,11 @@ export class AuthService {
                     return next();
                 }
             } catch (e) {
-                res.status(403).send(e);
-                return;
+                return res.status(403).send(e);
             }
         }
         // Deny entry if bad token or no user in db.
-        res.sendStatus(403);
-        return;
+        return res.sendStatus(403);
     };
 
     // Create a jwt
