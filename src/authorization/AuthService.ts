@@ -38,6 +38,7 @@ export class AuthService {
     public get scope(): string {
         return this._scope;
     }
+
     // Decides what happens after the user authenticates for the first time.
     public handleRedirect = (
         req: Request,
@@ -73,6 +74,8 @@ export class AuthService {
         }
     };
 
+    // Returns either the updated user or user if token is still valid.
+    // Gets a new token for user and updates the database.
     public updateAccessToken = (user: IUser) => {
         return new Promise((resolve, reject) => {
             refresh.requestNewAccessToken(
@@ -97,6 +100,7 @@ export class AuthService {
             );
         });
     };
+
     // Ensure the user is authorized to use this route
     public ensureAuthorized = (
         req: Request,

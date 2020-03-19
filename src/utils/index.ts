@@ -18,14 +18,23 @@ export const deleteTempFile = (file: string) => {
     unlinkSync(file);
     return `${file} deleted`;
 };
-const fileFilter = (
-    req: Request,
-    file: Express.Multer.File,
-    cb: FileFilterCallback
-) => (isFileSupported(file.originalname) ? cb(null, true) : cb(null, false));
 
 export const upload = () => {
-    if (configuration.env === "test") return multer();
+    if (configuration.env === "test") {
+        // Don't save the files.
+        return multer();
+    }
+
+    const fileFilter = (
+        req: Request,
+        file: Express.Multer.File,
+        cb: FileFilterCallback
+    ) => {
+        return isFileSupported(file.originalname)
+            ? cb(null, true)
+            : cb(null, false);
+    };
+
     return multer({ dest: tmpdir(), fileFilter: fileFilter });
 };
 

@@ -24,6 +24,7 @@ router.post(
         const { accessToken, id } = <IUser>req.user;
         const { path: file, originalname } = req.file;
         const dataType = extname(originalname).replace(".", "");
+
         console.log(`${id} sending ${file}`);
         const [payload, error] = await uploadFile(accessToken, dataType, file);
 

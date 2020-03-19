@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8080;
 
 (async () => {
     try {
-        if (configuration.env === "production") await db.init();
+        await db.init();
 
         app.listen(PORT, () => console.log(`Server Listening on ${PORT}`));
     } catch (e) {

@@ -40,7 +40,7 @@ describe("/upload", () => {
         expect(spy).toHaveBeenCalled();
     });
 
-    test.only("Can process a single file for upload", async () => {
+    test("Can process a single file for upload", async () => {
         jest.spyOn(authService, "ensureLogin").mockImplementation(
             (req, res, next) => {
                 req.user = { refreshToken: 0 };
