@@ -31,7 +31,6 @@ Supported File Types:
 
 ## Running your own version
 
-
 You will need to first [register on strava](https://www.strava.com/register) and then [create an app](https://www.strava.com/settings/api). You're also going to need a PostgreSQL database. Once you have the prerequisites, create an `.env` file in the root directory, it should look like this:
 
 ```
@@ -57,7 +56,7 @@ npx ts-node-dev --respawn --transpileOnly index.ts
 
 ### Running the tests
 
-Make a dummy `.env` file and then:
+Create your `.env`  file and then:
 
 ```
 npm run test
