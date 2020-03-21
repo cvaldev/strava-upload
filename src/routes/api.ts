@@ -3,6 +3,7 @@ import { authService } from "../authorization";
 import { extname } from "path";
 import * as express from "express";
 import { uploadFile, upload } from "../utils";
+import { IUser } from "../models/IUser";
 /**
  * API access points
  */

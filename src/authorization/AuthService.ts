@@ -3,7 +3,7 @@ import * as refresh from "passport-oauth2-refresh";
 import * as db from "../models/models";
 import { sign, verify } from "jsonwebtoken";
 import { Handler, Request, Response, NextFunction } from "express";
-
+import { IUser } from "../models/IUser";
 /**
  * AuthService defines the needed functions to authenticate and verify a user.
  */

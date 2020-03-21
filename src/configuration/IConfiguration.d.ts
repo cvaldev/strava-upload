@@ -1,4 +1,4 @@
-interface IConfiguration {
+export interface IConfiguration {
     env: string;
     clientID: string;
     clientSecret: string;

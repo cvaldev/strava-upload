@@ -1,5 +1,5 @@
-import * as db from "./src/models";
-import { configuration } from "./src/configuration";
+import * as db from "./src/models/models";
+import { configuration } from "./src/configuration/configuration";
 import app from "./app";
 
 const PORT = process.env.PORT || 8080;

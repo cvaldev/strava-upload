@@ -1,4 +1,4 @@
-interface IUser {
+export interface IUser {
     id: number;
     accessToken: string;
     refreshToken: string;

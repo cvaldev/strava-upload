@@ -1,4 +1,5 @@
 import * as SequelizeMock from "sequelize-mock";
+import { IUser } from "../IUser";
 
 const sequelize = new SequelizeMock();
 

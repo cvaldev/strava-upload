@@ -1,3 +1,4 @@
+import { IConfiguration } from "../IConfiguration";
 export const configuration: IConfiguration = {
     env: "test",
     clientID: "client",
