@@ -3,7 +3,6 @@ import { configuration } from "./src/configuration/configuration";
 import app from "./app";
 
 const PORT = process.env.PORT || 8080;
-
 (async () => {
     try {
         await db.init();

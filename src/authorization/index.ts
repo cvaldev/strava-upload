@@ -1,4 +1,4 @@
-import { AuthService } from "./AuthService";
+import { AuthService } from "./authService";
 import { Strategy } from "passport-strava";
 import { configuration } from "../configuration/configuration";
 import { IUser } from "../models/IUser";

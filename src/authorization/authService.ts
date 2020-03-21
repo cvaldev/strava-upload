@@ -4,6 +4,9 @@ import * as db from "../models/models";
 import { sign, verify } from "jsonwebtoken";
 import { Handler, Request, Response, NextFunction } from "express";
 import { IUser } from "../models/IUser";
+import { Logger } from "log4js";
+import LogService from "../logger";
+
 /**
  * AuthService defines the needed functions to authenticate and verify a user.
  */
@@ -13,6 +16,7 @@ export class AuthService {
     private _scope: string;
     private _loginRoute: string;
     private _secret: string;
+    private logger: Logger;
 
     public constructor(
         name: string,
@@ -26,6 +30,7 @@ export class AuthService {
         this._scope = scope;
         this._loginRoute = loginRoute;
         this._secret = secret;
+        this.logger = new LogService("auth").logger;
     }
 
     // Express middleware
@@ -47,14 +52,18 @@ export class AuthService {
     ) => {
         const { state, scope } = req.query;
         const requiredScope = "read," + this._scope;
-        console.log("Scope: " + (scope === requiredScope));
-        if (state === "tokenize" && req.user) {
+        if (req.user) {
             // Extract user id from req.user
             const { id } = <IUser>req.user;
+            if (scope !== requiredScope) {
+                this.logger.debug(`${id} scope : ${scope}`);
+            }
 
-            // Create a jwt and send it back in the response.
-            const token = this.getJwt(id);
-            return res.json({ token: token });
+            if (state === "tokenize") {
+                // Create a jwt and send it back in the response.
+                const token = this.getJwt(id);
+                return res.json({ token: token });
+            }
         }
         return next();
     };
@@ -82,7 +91,7 @@ export class AuthService {
                 this._name,
                 user.refreshToken,
                 async (err, accessToken, refreshToken) => {
-                    console.log(`${user.id} refreshing `);
+                    this.logger.debug(`${user.id} refreshing `);
                     if (err || !accessToken) {
                         reject({
                             error: err ?? "An error occurred"
@@ -93,7 +102,7 @@ export class AuthService {
                     ) {
                         await db.update(user, accessToken, refreshToken);
                         resolve(db.find(user.id));
-                        console.log(`${user.id} updated`);
+                        this.logger.debug(`${user.id} updated`);
                     }
                     resolve(user);
                 }
