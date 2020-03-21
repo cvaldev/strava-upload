@@ -29,9 +29,26 @@ Supported File Types:
 - TCX
 - GPX
 
-## Running your own version
+## Testing
 
-You will need to first [register on strava](https://www.strava.com/register) and then [create an app](https://www.strava.com/settings/api). You're also going to need a PostgreSQL database. Once you have the prerequisites, create an `.env` file in the root directory, it should look like this:
+```
+npm run test
+```
+or:
+
+```
+npx jest
+```
+
+You can also watch files with
+
+```
+npx jest --watch
+```
+
+## Building and running
+
+You will need to first [register on strava](https://www.strava.com/register) and then [create an app](https://www.strava.com/settings/api). You're also going to need a database. Once you have done those things, create an `.env` file in the root directory, it should look like this:
 
 ```
 CLIENT_ID=<YOUR_CLIENT_ID>
@@ -52,16 +69,4 @@ If you want to avoid building on every file update you can run this to watch the
 
 ```
 npx ts-node-dev --respawn --transpileOnly index.ts 
-```
-
-### Running the tests
-
-Create your `.env`  file and then:
-
-```
-npm run test
-```
-or if you prefer:
-```
-npx jest
 ```
