@@ -129,9 +129,9 @@ export class AuthService {
 
     // Ensures the user is logged in.
     public ensureLogin = (req: Request, res: Response, next: NextFunction) => {
-        console.log("Checking log in");
         if (req.isAuthenticated()) {
-            console.log("Authenticated!");
+            //@ts-ignore
+            this.logger.debug(`Authenticated ${req.user.id}!`);
             return next();
         }
         return res.redirect(this._loginRoute);
@@ -143,11 +143,12 @@ export class AuthService {
         res: Response,
         next: NextFunction
     ) => {
-        console.log("Checking token");
         const { authorization } = req.headers;
         if (authorization) {
             const [type, token] = authorization.split(" ");
             try {
+                this.logger.debug(`Verifying token: ${token}`);
+
                 const data = verify(token, this._secret);
                 // @ts-ignore: id doesn't exist
                 const user = await db.find(data.id);
@@ -157,6 +158,7 @@ export class AuthService {
                     return next();
                 }
             } catch (e) {
+                this.logger.error(`Token:${token} ERROR! error:${e}`);
                 return res.sendStatus(403);
             }
         }
@@ -178,6 +180,7 @@ export class AuthService {
     public login = (state?: string, force?: boolean): any => {
         const { _scope: scope } = this;
         if (force) {
+            this.logger.debug("Force approval_prompt");
             return this.authenticate({
                 scope: scope,
                 approval_prompt: "force"
