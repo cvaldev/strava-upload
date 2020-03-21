@@ -76,6 +76,7 @@ describe("ensureLogin", () => {
 
     test("Can allow user if authenticated", () => {
         req.headers = {};
+        req.user = { id: 0 };
         req.isAuthenticated = jest.fn().mockReturnValue(true);
 
         authService.ensureLogin(req, res, next);
