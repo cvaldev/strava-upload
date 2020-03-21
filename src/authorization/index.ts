@@ -1,7 +1,6 @@
 import { AuthService } from "./AuthService";
 import { Strategy } from "passport-strava";
 import { configuration } from "../configuration";
-import { User } from "../user/User";
 import * as db from "../models";
 import * as bodyParser from "body-parser";
 import * as session from "express-session";
@@ -27,7 +26,12 @@ const strategy = new Strategy(
         profile: any,
         done: any
     ) => {
-        const user = new User(accessToken, refreshToken, profile);
+        const user: IUser = {
+            id: profile.id,
+            accessToken: accessToken,
+            refreshToken: refreshToken
+        };
+
         try {
             const [found] = await db.findOrCreate(user);
 
@@ -50,7 +54,7 @@ const strategy = new Strategy(
 passport.use(strategyName, strategy);
 refresh.use(strategyName, strategy);
 
-passport.serializeUser((user: User, done: any) => {
+passport.serializeUser((user: IUser, done: any) => {
     done(null, user.id);
 });
 

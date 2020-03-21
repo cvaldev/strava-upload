@@ -1,11 +1,11 @@
-import { Model } from "sequelize";
+import { Model, BuildOptions } from "sequelize";
 
-// UserModel to be used on PostgreSQL DataBase.
-export class UserModel extends Model implements IUser {
-    public id!: number;
-    public accessToken!: string;
-    public refreshToken!: string;
-
-    public readonly createdAt?: Date;
-    public readonly updatedAt?: Date;
+interface IUser extends Model {
+    id: number;
+    accessToken: string;
+    refreshToken: string;
 }
+
+export type UserModelStatic = typeof Model & {
+    new (values?: object, options?: BuildOptions): IUser;
+};

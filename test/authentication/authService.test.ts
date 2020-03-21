@@ -7,7 +7,6 @@ import { Request, Response, NextFunction } from "express";
 const name = authService.name;
 const scope = authService.scope;
 let req: Request, res: Response, next: NextFunction;
-
 beforeEach(() => {
     req = <Request>{ query: {}, headers: {} };
     res = <Response>{};
@@ -90,7 +89,6 @@ describe("verifyToken", () => {
         jest.spyOn(jsonwebtoken, "verify").mockImplementation(() => ({
             id: 0
         }));
-        jest.spyOn(db, "find").mockReturnValue(true);
 
         req.headers = { authorization: "Bearer 0000" };
         await authService.verifyToken(req, res, next);

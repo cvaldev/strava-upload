@@ -1,25 +1,20 @@
 import { Sequelize, DataTypes } from "sequelize";
-import { UserModel } from "./UserModel";
+import { UserModelStatic } from "./UserModel";
 import { configuration } from "../configuration";
+
 // Set up sequelize to use PostgreSQL database
 
 const sequelize = new Sequelize(configuration.databaseURL, {
     dialectOptions: { ssl: true }
 });
 
-UserModel.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: false,
-            primaryKey: true
-        },
-        accessToken: DataTypes.STRING,
-        refreshToken: DataTypes.STRING
-    },
-    { sequelize, tableName: "users" }
-);
-
+const UserModel = <UserModelStatic>sequelize.define("user", {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: false,
+        primaryKey: true
+    }
+});
 // Authenticate and connect to remote db.
 export const init = () => sequelize.sync();
 

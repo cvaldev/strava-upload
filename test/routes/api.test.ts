@@ -5,7 +5,6 @@ import * as utils from "../../src/utils";
 import * as express from "express";
 import * as request from "supertest";
 import * as refresh from "passport-oauth2-refresh";
-import * as multer from "multer";
 
 const app = express();
 app.use(router);
