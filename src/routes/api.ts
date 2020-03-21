@@ -4,11 +4,14 @@ import { extname } from "path";
 import * as express from "express";
 import { uploadFile, upload } from "../utils";
 import { IUser } from "../models/IUser";
+import LogService, { errLogger } from "../logger";
+
 /**
  * API access points
  */
 
 export const router = express.Router();
+const logger = new LogService("api").logger;
 
 router.post(
     "/upload",
@@ -26,12 +29,13 @@ router.post(
         const { path: file, originalname } = req.file;
         const dataType = extname(originalname).replace(".", "");
 
-        console.log(`${id} sending ${file}`);
+        logger.debug(`${id} sending ${file}`);
         const [payload, error] = await uploadFile(accessToken, dataType, file);
 
         if (!error) {
             return res.json(payload);
         } else {
+            errLogger.error(`Failed to upload file! ${error}`);
             return res.status(error.statusCode).json(error);
         }
     }

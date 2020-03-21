@@ -5,7 +5,6 @@ import * as passport from "passport";
 
 const app = express();
 app.use(router);
-
 afterEach(jest.restoreAllMocks);
 
 describe("/", () => {

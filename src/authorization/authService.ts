@@ -5,7 +5,7 @@ import { sign, verify } from "jsonwebtoken";
 import { Handler, Request, Response, NextFunction } from "express";
 import { IUser } from "../models/IUser";
 import { Logger } from "log4js";
-import LogService from "../logger";
+import LogService, { errLogger } from "../logger";
 
 /**
  * AuthService defines the needed functions to authenticate and verify a user.
@@ -78,8 +78,8 @@ export class AuthService {
             const user = await this.updateAccessToken(<IUser>req.user);
             req.user = user;
             return next();
-        } catch (error) {
-            return res.status(401).send(error);
+        } catch (err) {
+            return res.status(401).send(err);
         }
     };
 
@@ -157,9 +157,8 @@ export class AuthService {
                     req.user = user;
                     return next();
                 }
-            } catch (e) {
-                this.logger.error(`Token:${token} ERROR! error:${e}`);
-                return res.sendStatus(403);
+            } catch (err) {
+                return res.status(403).send(err);
             }
         }
         // Deny entry if bad token or no user in db.

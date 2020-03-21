@@ -1,10 +1,28 @@
 import * as mockFs from "mock-fs";
 import { readFileSync } from "fs";
 import LogService from "../../src/logger";
+import { configure } from "log4js";
+
+configure({
+    appenders: {
+        multi: {
+            type: "multiFile",
+            base: LogService.base,
+            property: "categoryName",
+            extension: ".log"
+        }
+    },
+    categories: {
+        default: {
+            appenders: ["multi"],
+            level: "debug"
+        }
+    }
+});
 
 beforeEach(() => {
     //@ts-ignore
-    mockFs();
+    mockFs({ [LogService.base]: {} });
 });
 afterEach(() => mockFs.restore());
 

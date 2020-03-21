@@ -51,7 +51,7 @@ export const uploadFile = async (
                 data_type: dataType,
                 file: file
             },
-            () => console.log(deleteTempFile(file))
+            () => deleteTempFile(file)
         );
 
         return [payload, null];

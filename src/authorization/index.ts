@@ -8,6 +8,7 @@ import * as session from "express-session";
 import * as cookieParser from "cookie-parser";
 import * as passport from "passport";
 import * as refresh from "passport-oauth2-refresh";
+import { errLogger } from "../logger";
 
 const strategyName = "strava";
 const loginRoute = "/oauth/strava";
@@ -44,9 +45,9 @@ const strategy = new Strategy(
                 await db.update(user, accessToken, refreshToken);
             }
             return done(null, found);
-        } catch (e) {
-            console.log(e);
-            return done(e, null);
+        } catch (err) {
+            errLogger.error(`ERROR: finding user in db. ${err}`);
+            return done(err, null);
         }
     }
 );
