@@ -5,7 +5,7 @@ import * as multer from "multer";
 import * as strava from "strava-v3";
 import { FileFilterCallback } from "multer";
 import { tmpdir } from "os";
-import { configuration } from "../configuration";
+import { configuration } from "../configuration/configuration";
 
 export const isFileSupported = (fileName: string) => {
     const allowed = [".FIT", ".TCX", ".GPX"];

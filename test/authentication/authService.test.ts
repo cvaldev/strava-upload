@@ -1,5 +1,5 @@
 import { authService } from "../../src/authorization";
-import * as db from "../../src/models";
+import * as db from "../../src/models/models";
 import * as passport from "passport";
 import * as jsonwebtoken from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";

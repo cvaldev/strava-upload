@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { UserModelStatic } from "./UserModel";
-import { configuration } from "../configuration";
+import { configuration } from "../configuration/configuration";
 
 // Set up sequelize to use PostgreSQL database
 
