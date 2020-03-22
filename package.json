@@ -2,9 +2,9 @@
     "name": "strava-upload",
     "version": "1.0.0",
     "description": "",
-    "main": "dist/index.js",
+    "main": "dist/server.js",
     "scripts": {
-        "dev": "ts-node-dev --ignore-watch .next/ --project tsconfig.server.json --respawn --transpileOnly app.ts",
+        "dev": "ts-node-dev --ignore-watch .next/ --project tsconfig.server.json --respawn --transpileOnly server.ts",
         "build": "next build",
         "start": "next start"
     },
