@@ -6,6 +6,6 @@
         "outDir": "dist",
         "noEmit": false,
         "jsx": "react",
-        "isolatedModules": true
+        "isolatedModules": false
     }
 }

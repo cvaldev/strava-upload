@@ -1,9 +1,9 @@
 import passport from "passport";
 import refresh from "passport-oauth2-refresh";
-import * as db from "../models/models";
+import * as db from "../server/models/models";
 import { sign, verify } from "jsonwebtoken";
 import { Handler, Request, Response, NextFunction } from "express";
-import { IUser } from "../models/IUser";
+import { IUser } from "../server/models/IUser";
 import { Logger } from "log4js";
 import LogService, { errLogger } from "../logger";
 

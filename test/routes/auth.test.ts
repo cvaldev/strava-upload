@@ -1,4 +1,4 @@
-import { router } from "../../src/routes/auth";
+import { router } from "../../src/server/routes/auth";
 import express from "express";
 import request from "supertest";
 import passport from "passport";

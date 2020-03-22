@@ -1,4 +1,4 @@
-import { router } from "../../src/routes/api";
+import { router } from "../../src/server/routes/api";
 import { authService } from "../../src/authorization";
 import { join } from "path";
 import * as utils from "../../src/utils";

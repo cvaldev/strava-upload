@@ -1,8 +1,8 @@
 import { AuthService } from "./authService";
 import { Strategy } from "passport-strava";
 import { configuration } from "../configuration/configuration";
-import { IUser } from "../models/IUser";
-import * as db from "../models/models";
+import { IUser } from "../server/models/IUser";
+import * as db from "../server/models/models";
 import bodyParser from "body-parser";
 import session from "express-session";
 import cookieParser from "cookie-parser";
