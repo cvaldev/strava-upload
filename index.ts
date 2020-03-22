@@ -1,8 +1,8 @@
 import next from "next";
-import server from "./src/server/server";
-import { errLogger } from "./src/logger/logger";
+import server from "./src/server";
+import { errLogger } from "./src/logger";
 import { Request, Response } from "express";
-import { init } from "./src/server/models/models";
+import { init } from "./src/server/models";
 import { configuration } from "./src/configuration/configuration";
 
 const PORT = process.env.PORT || 8080;

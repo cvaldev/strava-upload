@@ -1,9 +1,9 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { UserModelStatic } from "./UserModel";
-import { configuration } from "../../configuration/configuration";
-import { IUser } from "./IUser";
-// Set up sequelize to use PostgreSQL database
+import configuration from "../../configuration";
+import { IUser } from "../../interfaces";
 
+// Set up sequelize to use PostgreSQL database
 const sequelize = new Sequelize(configuration.databaseURL, {
     dialectOptions: { ssl: true }
 });

@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import { authService } from "../../authorization/authorization";
+import authService from "../../authorization";
 import { extname } from "path";
 import express from "express";
-import { uploadFile, upload } from "../../utils/utils";
-import { IUser } from "../models/IUser";
-import LogService, { errLogger } from "../../logger/logger";
+import { uploadFile, upload } from "../../utils";
+import { IUser } from "../../interfaces";
+import LogService, { errLogger } from "../../logger";
 
 /**
  * API access points
  */
 
-export const router = express.Router();
+const router = express.Router();
 const logger = new LogService("api").logger;
 
 router.post(
@@ -40,3 +40,5 @@ router.post(
         }
     }
 );
+
+export default router;

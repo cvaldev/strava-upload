@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from "express";
-import { authService } from "../../authorization/authorization";
+import authService from "../../authorization";
 import express from "express";
 
 /**
  * Authentication access points.
  */
 
-export const router = express.Router();
+const router = express.Router();
 
 router.get("/", (req: Request, res: Response, next: NextFunction) => {
     const state = req.query?.state;
@@ -19,3 +19,5 @@ router.get(
     authService.handleRedirect,
     (req: Request, res: Response) => res.send("You may close this tab!")
 );
+
+export default router;

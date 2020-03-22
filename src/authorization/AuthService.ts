@@ -1,16 +1,16 @@
 import passport from "passport";
 import refresh from "passport-oauth2-refresh";
-import * as db from "../server/models/models";
+import * as db from "../server/models";
 import { sign, verify } from "jsonwebtoken";
 import { Handler, Request, Response, NextFunction } from "express";
-import { IUser } from "../server/models/IUser";
+import { IUser } from "../interfaces";
 import { Logger } from "log4js";
-import LogService from "../logger/logger";
+import LogService from "../logger";
 
 /**
  * AuthService defines the needed functions to authenticate and verify a user.
  */
-export class AuthService {
+export default class AuthService {
     private _name: string;
     private _middleware: Handler[];
     private _scope: string;

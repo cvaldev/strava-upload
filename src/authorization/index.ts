@@ -1,14 +1,14 @@
-import { AuthService } from "./AuthService";
+import AuthService from "./AuthService";
 import { Strategy } from "passport-strava";
-import { configuration } from "../configuration/configuration";
-import { IUser } from "../server/models/IUser";
-import * as db from "../server/models/models";
+import configuration from "../configuration";
+import { IUser } from "../interfaces";
+import * as db from "../server/models";
 import bodyParser from "body-parser";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import refresh from "passport-oauth2-refresh";
-import { errLogger } from "../logger/logger";
+import { errLogger } from "../logger";
 
 const strategyName = "strava";
 const loginRoute = "/oauth/strava";
@@ -82,10 +82,12 @@ const middleware = [
     passport.session()
 ];
 
-export const authService = new AuthService(
+const authService = new AuthService(
     strategyName,
     scope,
     loginRoute,
     configuration.secret,
     middleware
 );
+
+export default authService;

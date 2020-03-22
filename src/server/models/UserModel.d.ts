@@ -1,5 +1,5 @@
 import { Model, BuildOptions } from "sequelize";
-import { IUser } from "./IUser";
+import { IUser } from "../../interfaces";
 
 interface UserModel extends Model, IUser {
     id: number;

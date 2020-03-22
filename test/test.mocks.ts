@@ -1,2 +1,2 @@
-jest.mock("../src/server/models/models");
-jest.mock("../src/configuration/configuration");
+jest.mock("../src/server/models");
+jest.mock("../src/configuration");
