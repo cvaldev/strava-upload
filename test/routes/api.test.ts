@@ -2,9 +2,9 @@ import { router } from "../../src/routes/api";
 import { authService } from "../../src/authorization";
 import { join } from "path";
 import * as utils from "../../src/utils";
-import * as express from "express";
-import * as request from "supertest";
-import * as refresh from "passport-oauth2-refresh";
+import express from "express";
+import request from "supertest";
+import refresh from "passport-oauth2-refresh";
 
 const app = express();
 app.use(router);

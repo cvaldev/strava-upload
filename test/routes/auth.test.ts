@@ -1,7 +1,7 @@
 import { router } from "../../src/routes/auth";
-import * as express from "express";
-import * as request from "supertest";
-import * as passport from "passport";
+import express from "express";
+import request from "supertest";
+import passport from "passport";
 
 const app = express();
 app.use(router);

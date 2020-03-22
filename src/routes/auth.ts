@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { authService } from "../authorization";
-import * as express from "express";
+import express from "express";
 
 /**
  * Authentication access points.

@@ -1,5 +1,5 @@
 import { isFileSupported, deleteTempFile } from "../src/utils";
-import * as mockFs from "mock-fs";
+import mockFs from "mock-fs";
 import { existsSync } from "fs";
 
 describe("isFileSupported()", () => {
@@ -14,6 +14,7 @@ describe("isFileSupported()", () => {
 describe("deleteTempFile()", () => {
     const file = "foo/bar.fit";
     beforeEach(() => {
+        //@ts-ignore
         mockFs({
             [file]: "contents"
         });

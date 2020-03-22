@@ -1,5 +1,5 @@
 import passport from "passport";
-import * as refresh from "passport-oauth2-refresh";
+import refresh from "passport-oauth2-refresh";
 import * as db from "../models/models";
 import { sign, verify } from "jsonwebtoken";
 import { Handler, Request, Response, NextFunction } from "express";

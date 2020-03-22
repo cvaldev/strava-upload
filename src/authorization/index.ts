@@ -3,11 +3,11 @@ import { Strategy } from "passport-strava";
 import { configuration } from "../configuration/configuration";
 import { IUser } from "../models/IUser";
 import * as db from "../models/models";
-import * as bodyParser from "body-parser";
+import bodyParser from "body-parser";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import passport from "passport";
-import * as refresh from "passport-oauth2-refresh";
+import refresh from "passport-oauth2-refresh";
 import { errLogger } from "../logger";
 
 const strategyName = "strava";

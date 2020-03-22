@@ -1,6 +1,6 @@
 import { authService } from "../../src/authorization";
-import * as passport from "passport";
-import * as jsonwebtoken from "jsonwebtoken";
+import passport from "passport";
+import jsonwebtoken from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
 const name = authService.name;

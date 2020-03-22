@@ -1,5 +1,5 @@
 import app from "../app";
-import * as request from "supertest";
+import request from "supertest";
 
 test("Can GET /", async () => {
     const response = await request(app).get("/");

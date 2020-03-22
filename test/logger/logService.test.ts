@@ -1,4 +1,4 @@
-import * as mockFs from "mock-fs";
+import mockFs from "mock-fs";
 import { readFileSync } from "fs";
 import LogService from "../../src/logger";
 import { configure } from "log4js";
