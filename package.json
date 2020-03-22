@@ -4,10 +4,9 @@
     "description": "",
     "main": "dist/index.js",
     "scripts": {
-        "test": "jest",
-        "build": "rimraf dist && tsc",
-        "start": "node dist/server.js",
-        "postinstall": "npm run build"
+        "dev": "ts-node-dev --project tsconfig.server.json --respawn --transpileOnly app.ts",
+        "build": "next build",
+        "start": "next start"
     },
     "repository": {
         "type": "git",

@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { extname } from "path";
 import { unlinkSync } from "fs";
-import * as multer from "multer";
+import multer from "multer";
 import * as strava from "strava-v3";
 import { FileFilterCallback } from "multer";
 import { tmpdir } from "os";

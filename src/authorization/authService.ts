@@ -1,4 +1,4 @@
-import * as passport from "passport";
+import passport from "passport";
 import * as refresh from "passport-oauth2-refresh";
 import * as db from "../models/models";
 import { sign, verify } from "jsonwebtoken";

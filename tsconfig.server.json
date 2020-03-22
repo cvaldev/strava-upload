@@ -1,0 +1,16 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "dist",
+        "noEmit": false
+    },
+    "include": ["src/**/*.ts", "app.ts"],
+    "exclude": [
+        "src/test/**/*.spec.ts",
+        "**/*.test.ts",
+        "**/__mocks__/",
+        "pages/",
+        ".next/"
+    ]
+}

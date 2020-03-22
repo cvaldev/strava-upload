@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
+        "module": "esnext",
         "outDir": "dist",
         "sourceMap": false,
         "allowSyntheticDefaultImports": true,
@@ -9,8 +9,25 @@
         "paths": {
             "*": ["node_modules/"],
             "typings/*": ["src/typings/*"]
-        }
+        },
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": false,
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve"
     },
-    "include": ["src/**/*.ts", "app.ts", "server.ts"],
-    "exclude": ["src/test/**/*.spec.ts", "**/*.test.ts", "**/__mocks__/"]
+    // "include": ["src/**/*.ts"],
+    "exclude": [
+        "src/test/**/*.spec.ts",
+        "**/*.test.ts",
+        "**/__mocks__/",
+        "next/",
+        "pages/"
+    ]
 }
