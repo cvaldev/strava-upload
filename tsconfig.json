@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "target": "esnext",
         "module": "esnext",
         "outDir": "dist",
         "sourceMap": false,
@@ -22,12 +22,5 @@
         "isolatedModules": true,
         "jsx": "preserve"
     },
-    // "include": ["src/**/*.ts"],
-    "exclude": [
-        "src/test/**/*.spec.ts",
-        "**/*.test.ts",
-        "**/__mocks__/",
-        "next/",
-        "pages/"
-    ]
+    "exclude": ["src/test/**/*.spec.ts", "**/*.test.ts", "**/__mocks__/"]
 }

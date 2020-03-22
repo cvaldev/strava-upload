@@ -1,16 +1,10 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
+        "target": "es6",
         "module": "commonjs",
         "outDir": "dist",
         "noEmit": false
     },
-    "include": ["src/**/*.ts", "app.ts"],
-    "exclude": [
-        "src/test/**/*.spec.ts",
-        "**/*.test.ts",
-        "**/__mocks__/",
-        "pages/",
-        ".next/"
-    ]
+    "include": ["src/**/*.ts", "app.ts"]
 }

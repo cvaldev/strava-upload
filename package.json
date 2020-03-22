@@ -4,7 +4,7 @@
     "description": "",
     "main": "dist/index.js",
     "scripts": {
-        "dev": "ts-node-dev --project tsconfig.server.json --respawn --transpileOnly app.ts",
+        "dev": "ts-node-dev --ignore-watch .next/ --project tsconfig.server.json --respawn --transpileOnly app.ts",
         "build": "next build",
         "start": "next start"
     },
