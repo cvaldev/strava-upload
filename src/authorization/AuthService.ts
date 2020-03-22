@@ -5,7 +5,7 @@ import { sign, verify } from "jsonwebtoken";
 import { Handler, Request, Response, NextFunction } from "express";
 import { IUser } from "../server/models/IUser";
 import { Logger } from "log4js";
-import LogService, { errLogger } from "../logger";
+import LogService from "../logger/logger";
 
 /**
  * AuthService defines the needed functions to authenticate and verify a user.

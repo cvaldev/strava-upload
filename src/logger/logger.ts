@@ -1,5 +1,5 @@
-import LogService from "./logService";
-import { configure } from "log4js";
+import LogService from "./LogService";
+import { configure, Logger } from "log4js";
 import { existsSync, mkdirSync } from "fs";
 import { join } from "path";
 import { configuration } from "../configuration/configuration";

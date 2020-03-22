@@ -1,7 +1,7 @@
 import { router } from "../../src/server/routes/api";
-import { authService } from "../../src/authorization";
+import { authService } from "../../src/authorization/authorization";
 import { join } from "path";
-import * as utils from "../../src/utils";
+import * as utils from "../../src/utils/utils";
 import express from "express";
 import request from "supertest";
 import refresh from "passport-oauth2-refresh";

@@ -1,4 +1,4 @@
-import { AuthService } from "./authService";
+import { AuthService } from "./AuthService";
 import { Strategy } from "passport-strava";
 import { configuration } from "../configuration/configuration";
 import { IUser } from "../server/models/IUser";
@@ -8,7 +8,7 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import refresh from "passport-oauth2-refresh";
-import { errLogger } from "../logger";
+import { errLogger } from "../logger/logger";
 
 const strategyName = "strava";
 const loginRoute = "/oauth/strava";

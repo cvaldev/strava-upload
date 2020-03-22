@@ -1,4 +1,4 @@
-import { isFileSupported, deleteTempFile } from "../src/utils";
+import { isFileSupported, deleteTempFile } from "../src/utils/utils";
 import mockFs from "mock-fs";
 import { existsSync } from "fs";
 

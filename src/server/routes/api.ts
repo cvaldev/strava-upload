@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { authService } from "../../authorization";
+import { authService } from "../../authorization/authorization";
 import { extname } from "path";
 import express from "express";
-import { uploadFile, upload } from "../../utils";
+import { uploadFile, upload } from "../../utils/utils";
 import { IUser } from "../models/IUser";
-import LogService, { errLogger } from "../../logger";
+import LogService, { errLogger } from "../../logger/logger";
 
 /**
  * API access points

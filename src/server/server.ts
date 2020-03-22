@@ -1,5 +1,5 @@
 import express from "express";
-import { authService } from "../authorization";
+import { authService } from "../authorization/authorization";
 import { authRouter, apiRouter } from "./routes";
 
 const server = express();

@@ -1,6 +1,6 @@
 import next from "next";
 import server from "./src/server/server";
-import { errLogger } from "./src/logger";
+import { errLogger } from "./src/logger/logger";
 import { Request, Response } from "express";
 import { init } from "./src/server/models/models";
 import { configuration } from "./src/configuration/configuration";
