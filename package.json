@@ -4,6 +4,7 @@
     "description": "",
     "main": "dist/index.js",
     "scripts": {
+        "dev": "npx ts-node-dev  --respawn --transpileOnly server.ts",
         "test": "jest",
         "build": "rimraf dist && tsc",
         "start": "node dist/server.js",
