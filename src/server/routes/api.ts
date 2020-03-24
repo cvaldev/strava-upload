@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import authService from "../../authorization";
 import { extname } from "path";
 import express from "express";
-import { uploadFile, upload } from "../../utils";
+import { uploadFile, upload, deleteTempFile } from "../../utils";
 import { IUser } from "../../interfaces";
 import { logger, errLogger } from "../../logger";
 
@@ -16,27 +16,41 @@ router.post(
     "/upload",
     authService.ensureAuthorized,
     authService.refreshToken,
-    upload().single("file"),
+    upload().array("file", 25),
     async (req: Request, res: Response) => {
-        if (!req.file) {
+        const files = <Express.Multer.File[]>req.files;
+
+        if (!files.length) {
             return res.status(400).json({
                 error: "BAD REQUEST",
-                message: { file: "no file in request" }
+                message: "no files in request"
             });
         }
         const { accessToken, id } = <IUser>req.user;
-        const { path: file, originalname } = req.file;
-        const dataType = extname(originalname).replace(".", "");
 
-        logger.debug(`${id} sending ${file}`);
-        const [payload, error] = await uploadFile(accessToken, dataType, file);
+        const uploads = [];
+        // Send each file individually.
+        for (const file of files) {
+            const { path, originalname } = file;
+            const dataType = extname(originalname).replace(".", "");
+            logger.debug(`${id} attempting to send ${path}`);
 
-        if (!error) {
-            return res.json(payload);
-        } else {
-            errLogger.error(`Failed to upload file! ${error}`);
-            return res.status(error.statusCode).json(error);
+            const [payload, error] = await uploadFile(
+                accessToken,
+                dataType,
+                path
+            );
+
+            if (!error) {
+                logger.debug(`Uploaded ${path}.`);
+                uploads.push(payload);
+            } else {
+                errLogger.error(`Failed to upload file! ${error}. User:${id}`);
+                deleteTempFile(path);
+            }
         }
+
+        return res.json({ uploads });
     }
 );
 

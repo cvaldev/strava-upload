@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import fetch from "isomorphic-unfetch";
+import DropZone from "./DropZone";
 
 interface Props {
     /**
@@ -16,26 +17,30 @@ const FileUpload = (props: Props) => {
         uploadHandler(file, uploadUrl);
     };
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.files);
-        setFile(e.target.files[0]);
+        // console.log(e.target.files);
+
+        setFile(Array.from(e.target.files));
     };
 
     return (
         <div>
+            <DropZone />
             <form onSubmit={handleSubmit}>
                 <label>
                     Upload File: <br />
-                    <input type="file" onChange={handleChange} />
+                    <input type="file" onChange={handleChange} multiple />
                 </label>
+
                 <input type="submit" value="Submit" />
             </form>
         </div>
     );
 };
 
-const uploadHandler = async (file, uploadUrl) => {
+const uploadHandler = async (files, uploadUrl) => {
     const form = new FormData();
-    form.append("file", file);
+    console.log(files);
+    for (const file of files) form.append("file", file);
     const response = await fetch(uploadUrl, { method: "post", body: form });
     if (response.ok) console.log(await response.json());
 };
