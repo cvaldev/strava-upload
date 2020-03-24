@@ -5,7 +5,7 @@ import { sign, verify } from "jsonwebtoken";
 import { Handler, Request, Response, NextFunction } from "express";
 import { IUser } from "../interfaces";
 import { Logger } from "log4js";
-import LogService from "../logger";
+import { logger } from "../logger";
 
 /**
  * AuthService defines the needed functions to authenticate and verify a user.
@@ -30,7 +30,7 @@ export default class AuthService {
         this._scope = scope;
         this._loginRoute = loginRoute;
         this._secret = secret;
-        this.logger = new LogService("auth").logger;
+        this.logger = logger;
     }
 
     // Express middleware
@@ -79,7 +79,8 @@ export default class AuthService {
             req.user = user;
             return next();
         } catch (err) {
-            return res.status(401).send(err);
+            this.logger.error(err);
+            return res.status(err.statusCode).json(err);
         }
     };
 
@@ -93,9 +94,7 @@ export default class AuthService {
                 async (err, accessToken, refreshToken) => {
                     this.logger.debug(`${user.id} refreshing `);
                     if (err || !accessToken) {
-                        reject({
-                            error: err ?? "An error occurred"
-                        });
+                        reject(err ?? "ERROR");
                     } else if (
                         user.accessToken !== accessToken ||
                         user.refreshToken !== refreshToken
@@ -158,6 +157,7 @@ export default class AuthService {
                     return next();
                 }
             } catch (err) {
+                this.logger.error(err);
                 return res.status(403).send(err);
             }
         }

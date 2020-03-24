@@ -6,7 +6,7 @@ import * as strava from "strava-v3";
 import { FileFilterCallback } from "multer";
 import { tmpdir } from "os";
 import configuration from "../configuration";
-
+import { logger } from "../logger";
 export const isFileSupported = (fileName: string) => {
     const allowed = [".FIT", ".TCX", ".GPX"];
     const extension = extname(fileName.toUpperCase());
@@ -16,7 +16,7 @@ export const isFileSupported = (fileName: string) => {
 
 export const deleteTempFile = (file: string) => {
     unlinkSync(file);
-    return `${file} deleted`;
+    logger.debug(`${file} deleted`);
 };
 
 export const upload = () => {
@@ -34,7 +34,6 @@ export const upload = () => {
             ? cb(null, true)
             : cb(null, false);
     };
-
     return multer({ dest: tmpdir(), fileFilter: fileFilter });
 };
 

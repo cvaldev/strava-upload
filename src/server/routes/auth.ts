@@ -17,7 +17,7 @@ router.get(
     "/redirect",
     authService.verifyRedirect,
     authService.handleRedirect,
-    (req: Request, res: Response) => res.send("You may close this tab!")
+    (req: Request, res: Response) => res.redirect("/")
 );
 
 export default router;

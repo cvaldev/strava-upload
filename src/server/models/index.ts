@@ -13,7 +13,9 @@ const UserModel = <UserModelStatic>sequelize.define("user", {
         type: DataTypes.INTEGER,
         autoIncrement: false,
         primaryKey: true
-    }
+    },
+    accessToken: DataTypes.STRING,
+    refreshToken: DataTypes.STRING
 });
 // Authenticate and connect to remote db.
 export const init = () => sequelize.sync();

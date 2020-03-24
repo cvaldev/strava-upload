@@ -4,14 +4,13 @@ import { extname } from "path";
 import express from "express";
 import { uploadFile, upload } from "../../utils";
 import { IUser } from "../../interfaces";
-import LogService, { errLogger } from "../../logger";
+import { logger, errLogger } from "../../logger";
 
 /**
  * API access points
  */
 
 const router = express.Router();
-const logger = new LogService("api").logger;
 
 router.post(
     "/upload",
@@ -22,7 +21,7 @@ router.post(
         if (!req.file) {
             return res.status(400).json({
                 error: "BAD REQUEST",
-                message: { file: req.file }
+                message: { file: "no file in request" }
             });
         }
         const { accessToken, id } = <IUser>req.user;

@@ -37,5 +37,6 @@ if (configuration.env !== "test") {
     });
 }
 
+export const logger = new LogService("server").logger;
 export const errLogger = new LogService("err").logger;
 export default LogService;
