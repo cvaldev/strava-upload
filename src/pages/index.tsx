@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { ReturnUserLayout, NewUserLayout, Layout } from "../components";
+import { ReturnUserLayout, NewUserLayout } from "../components";
 interface IndexProps {
     isAuthenticated: boolean;
 }
@@ -7,17 +7,9 @@ interface IndexProps {
 const Index: NextPage<IndexProps> = (props: IndexProps) => {
     const { isAuthenticated } = props;
     if (isAuthenticated) {
-        return (
-            <Layout>
-                <ReturnUserLayout />
-            </Layout>
-        );
+        return <ReturnUserLayout />;
     } else {
-        return (
-            <Layout>
-                <NewUserLayout />
-            </Layout>
-        );
+        return <NewUserLayout />;
     }
 };
 

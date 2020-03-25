@@ -1,24 +1,26 @@
-import { Fragment } from "react";
+import StravaConnect from "./StravaConnect";
+import { Layout } from "../Layout";
 
 export const NewUserLayout = () => {
     return (
-        <Fragment>
-            <div className="left">
-                <h1>strava-upload</h1>
+        <Layout>
+            <div>
+                <h1>Left side</h1>
             </div>
-            <div className="right"></div>
-
             <style jsx>
                 {`
-                    .left {
-                        background-color: #fc4c02;
-                        transform: skew(0deg, -10deg);
-                    }
-                    h1 {
-                        transform: skew(0deg, 10deg);
+                    div {
+                        height: 100%;
+
+                        background: linear-gradient(
+                            320deg,
+                            rgba(255, 255, 255, 1),
+                            rgba(255, 255, 255, 1) 50%,
+                            rgba(252, 76, 2, 1) calc(50% + 1px)
+                        );
                     }
                 `}
             </style>
-        </Fragment>
+        </Layout>
     );
 };

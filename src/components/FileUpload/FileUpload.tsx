@@ -8,6 +8,7 @@ interface Props {
      */
     uploadUrl: string;
 }
+
 export const FileUpload = (props: Props) => {
     const { uploadUrl } = props;
     const [files, setFiles] = useState(null);
