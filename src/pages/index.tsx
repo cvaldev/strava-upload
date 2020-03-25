@@ -1,6 +1,5 @@
 import { NextPage } from "next";
-import { FileUpload, StravaConnect } from "../components";
-
+import { ReturnUserLayout, NewUserLayout, Layout } from "../components";
 interface IndexProps {
     isAuthenticated: boolean;
 }
@@ -8,9 +7,17 @@ interface IndexProps {
 const Index: NextPage<IndexProps> = (props: IndexProps) => {
     const { isAuthenticated } = props;
     if (isAuthenticated) {
-        return <FileUpload uploadUrl="/api/upload" />;
+        return (
+            <Layout>
+                <ReturnUserLayout />
+            </Layout>
+        );
     } else {
-        return <StravaConnect />;
+        return (
+            <Layout>
+                <NewUserLayout />
+            </Layout>
+        );
     }
 };
 

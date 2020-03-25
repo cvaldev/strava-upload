@@ -8,7 +8,7 @@ interface Props {
      */
     uploadUrl: string;
 }
-const FileUpload = (props: Props) => {
+export const FileUpload = (props: Props) => {
     const { uploadUrl } = props;
     const [files, setFiles] = useState(null);
 
@@ -42,5 +42,3 @@ const uploadHandler = async (files, uploadUrl) => {
     const response = await fetch(uploadUrl, { method: "post", body: form });
     if (response.ok) console.log(await response.json());
 };
-
-export default FileUpload;
