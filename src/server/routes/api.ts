@@ -29,6 +29,7 @@ router.post(
         const { accessToken, id } = <IUser>req.user;
 
         const uploads = [];
+
         // Send each file individually.
         for (const file of files) {
             const { path, originalname } = file;

@@ -7,7 +7,10 @@ import { configuration } from "./src/configuration/configuration";
 
 const PORT = process.env.PORT || 8080;
 const dev = configuration.env !== "production";
-const app = next({ dev });
+const app = next({
+    dev,
+    conf: { exportPathMap: () => ({ "/": { page: "/" } }) }
+});
 const handle = app.getRequestHandler();
 
 (async () => {
@@ -15,7 +18,12 @@ const handle = app.getRequestHandler();
         await init();
         await app.prepare();
 
-        server.get("*", (req: Request, res: Response) => handle(req, res));
+        server.get("*", (req, res) => {
+            handle(req, res);
+        });
+        // server.get("/", (req, res) =>
+        // app.render(req, res, "./src/pages/index", req.query)
+        // );
         server.listen(PORT, () => {
             console.log(`Server listening on ${PORT}`);
         });

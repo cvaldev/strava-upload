@@ -7,7 +7,6 @@ interface IndexProps {
 
 const Index: NextPage<IndexProps> = (props: IndexProps) => {
     const { isAuthenticated } = props;
-
     if (isAuthenticated) {
         return <FileUpload uploadUrl="/api/upload" />;
     } else {
@@ -16,8 +15,7 @@ const Index: NextPage<IndexProps> = (props: IndexProps) => {
 };
 
 Index.getInitialProps = async ({ req }) => {
-    //@ts-ignore
-    const isAuthenticated = req.isAuthenticated();
-    return { isAuthenticated: isAuthenticated };
+    // @ts-ignore
+    return { isAuthenticated: req.isAuthenticated() };
 };
 export default Index;

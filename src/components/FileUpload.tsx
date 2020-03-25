@@ -10,16 +10,14 @@ interface Props {
 }
 const FileUpload = (props: Props) => {
     const { uploadUrl } = props;
-    const [file, setFile] = useState(null);
+    const [files, setFiles] = useState(null);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        uploadHandler(file, uploadUrl);
+        uploadHandler(files, uploadUrl);
     };
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // console.log(e.target.files);
-
-        setFile(Array.from(e.target.files));
+        setFiles(Array.from(e.target.files));
     };
 
     return (
@@ -39,8 +37,8 @@ const FileUpload = (props: Props) => {
 
 const uploadHandler = async (files, uploadUrl) => {
     const form = new FormData();
-    console.log(files);
     for (const file of files) form.append("file", file);
+
     const response = await fetch(uploadUrl, { method: "post", body: form });
     if (response.ok) console.log(await response.json());
 };

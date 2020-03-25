@@ -6,8 +6,8 @@
     "scripts": {
         "test": "jest",
         "dev": "ts-node-dev --ignore-watch .next/ --project tsconfig.server.json --respawn --transpileOnly index.ts",
-        "build": "next build",
-        "start": "next start"
+        "build": "rimraf dist .next && next build && tsc --project tsconfig.server.json",
+        "start": "NODE_ENV=production node dist/index.js"
     },
     "repository": {
         "type": "git",

@@ -2,11 +2,12 @@ import { Request } from "express";
 import { extname } from "path";
 import { unlinkSync } from "fs";
 import multer from "multer";
-import * as strava from "strava-v3";
+import strava from "strava-v3";
 import { FileFilterCallback } from "multer";
 import { tmpdir } from "os";
 import configuration from "../configuration";
 import { logger } from "../logger";
+
 export const isFileSupported = (fileName: string) => {
     const allowed = [".FIT", ".TCX", ".GPX"];
     const extension = extname(fileName.toUpperCase());
@@ -43,7 +44,6 @@ export const uploadFile = async (
     file: string
 ): Promise<[any, any]> => {
     try {
-        // @ts-ignore: property `uploads` does not exist
         const payload = await strava.uploads.post(
             {
                 access_token: accessToken,

@@ -21,7 +21,7 @@ describe("/", () => {
 });
 
 describe("/redirect", () => {
-    test("Can GET /redirect", async () => {
+    test("Redirects to home if succesful auth", async () => {
         jest.spyOn(
             passport,
             "authenticate"
@@ -29,7 +29,8 @@ describe("/redirect", () => {
 
         const response = await request(app).get(`/redirect`);
 
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(302);
+        expect(response.header.location).toBe("/");
     });
 
     test("Restarts oauth flow if not authenticated", async () => {

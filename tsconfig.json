@@ -2,7 +2,6 @@
     "compilerOptions": {
         "target": "esnext",
         "module": "esnext",
-        "outDir": "dist",
         "sourceMap": false,
         "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
@@ -21,12 +20,5 @@
         "resolveJsonModule": true,
         "jsx": "preserve",
         "isolatedModules": true
-    },
-    "exclude": [
-        "src/test/**/*.spec.ts",
-        "**/*.test.ts",
-        "**/__mocks__/",
-        "test/"
-    ],
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+    }
 }
