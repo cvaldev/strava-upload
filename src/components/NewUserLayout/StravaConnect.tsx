@@ -1,9 +1,9 @@
 import Link from "next/link";
-
+import Button from "react-bootstrap/Button";
 const StravaConnect = () => {
     return (
         <Link href="/oauth/strava">
-            <button>Connect to Strava</button>
+            <Button>Connect to Strava</Button>
         </Link>
     );
 };
