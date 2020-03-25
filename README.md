@@ -40,12 +40,6 @@ or:
 npx jest
 ```
 
-You can also watch files with
-
-```
-npx jest --watch
-```
-
 ## Building and running
 
 You will need to first [register on strava](https://www.strava.com/register) and then [create an app](https://www.strava.com/settings/api). You're also going to need a database. Once you have done those things, create an `.env` file in the root directory, it should look like this:
@@ -65,8 +59,8 @@ npm install
 npm start
 ```
 
-If you want to avoid building on every file update you can run this to watch the TS files:
+If you want to watch the files while developing:
 
 ```
-npx ts-node-dev --respawn --transpileOnly index.ts 
+npm run dev
 ```
