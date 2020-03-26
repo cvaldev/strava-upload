@@ -50,9 +50,10 @@ export const uploadFile = async (
                 data_type: dataType,
                 file: file
             },
-            () => deleteTempFile(file)
+            () => {}
         );
 
+        deleteTempFile(file);
         return [payload, null];
     } catch (error) {
         return [null, error];

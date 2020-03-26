@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import fetch from "isomorphic-unfetch";
 import DropZone from "./DropZone";
-
 interface Props {
     /**
      * URL to which we wish to make a POST request
@@ -17,18 +16,14 @@ export const FileUpload = (props: Props) => {
         e.preventDefault();
         uploadHandler(files, uploadUrl);
     };
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFiles(Array.from(e.target.files));
+    const onDrop = (files: File[]) => {
+        setFiles(files);
     };
 
     return (
         <div>
-            <DropZone />
             <form onSubmit={handleSubmit}>
-                <label>
-                    Upload File: <br />
-                    <input type="file" onChange={handleChange} multiple />
-                </label>
+                <DropZone onDrop={onDrop} />
 
                 <input type="submit" value="Submit" />
             </form>
