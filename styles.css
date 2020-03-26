@@ -8,10 +8,34 @@ body,
 #__next {
     box-sizing: border-box;
 }
-#__next {
-    background-color: blue;
-}
 
 h1 {
     margin: 0;
+}
+.default-background {
+    height: 100%;
+    background: linear-gradient(
+        355deg,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 1) 10%,
+        rgba(252, 76, 2, 1) calc(10% + 1px),
+        rgba(252, 76, 2, 1) 100%
+    );
+}
+
+.reverse-background {
+    height: 100%;
+    background: linear-gradient(
+        355deg,
+        rgba(252, 76, 2, 1),
+        rgba(252, 76, 2, 1) 10%,
+        rgba(255, 255, 255, 1) calc(10% + 1px),
+        rgba(255, 255, 255, 1) 100%
+    );
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    height: 2.5rem;
 }
