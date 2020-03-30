@@ -1,4 +1,4 @@
-# strava-upload
+# strupload
 
 Easily upload files from your devices directly to your Strava profile without the hassle. 
 
