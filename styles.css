@@ -42,3 +42,49 @@ h1 {
 .special {
     height: 100%;
 }
+
+.back-text {
+    text-align: center;
+    padding-top: 10%;
+    color: rgba(252, 76, 2, 0.5);
+}
+
+.dropzone {
+    border: 2px solid rgb(252, 76, 2);
+    min-height: 15em;
+    border-radius: 15px;
+}
+
+.dropzone:hover {
+    cursor: pointer;
+}
+.upload-btn {
+    background-color: rgb(252, 76, 2);
+    border: 2px solid rgb(252, 76, 2);
+}
+.upload-btn:disabled {
+    background-color: rgb(252, 76, 2);
+    cursor: default;
+    border: 2px solid rgb(252, 76, 2);
+}
+.upload-btn:hover:enabled {
+    background-color: white;
+    color: rgb(252, 76, 2);
+    border: 2px solid rgb(252, 76, 2);
+}
+
+.upload-btn:focus {
+    background-color: rgb(252, 76, 2);
+    border: 2px solid rgb(252, 76, 2);
+}
+
+.file-list {
+    color: rgba(252, 76, 2, 0.5);
+    list-style-type: none;
+}
+
+.activities {
+    background-color: red;
+    height: 100%;
+    width: 100%;
+}

@@ -1,12 +1,12 @@
 import { NextPage } from "next";
 import { ReturnUserLayout, NewUserLayout } from "../components";
 interface IndexProps {
-    isAuthenticated: boolean;
+    isAuthenticated?: boolean;
 }
 
 const Index: NextPage<IndexProps> = (props: IndexProps) => {
     const { isAuthenticated } = props;
-    return <ReturnUserLayout />;
+
     if (isAuthenticated) {
         return <ReturnUserLayout />;
     } else {
@@ -16,6 +16,8 @@ const Index: NextPage<IndexProps> = (props: IndexProps) => {
 
 Index.getInitialProps = async ({ req }) => {
     // @ts-ignore
-    return { isAuthenticated: req.isAuthenticated() };
+    const isAuthenticated = req.isAuthenticated();
+    return { isAuthenticated: isAuthenticated };
 };
+
 export default Index;

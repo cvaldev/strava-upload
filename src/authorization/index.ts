@@ -12,7 +12,7 @@ import { errLogger } from "../logger";
 
 const strategyName = "strava";
 const loginRoute = "/oauth/strava";
-const scope = "activity:write";
+const scope = "activity:write,activity:read_all";
 
 // Strava Oauth Strategy
 const strategy = new Strategy(

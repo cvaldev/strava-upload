@@ -1,5 +1,6 @@
-import { useCallback, CSSProperties } from "react";
+import { CSSProperties } from "react";
 import { useDropzone } from "react-dropzone";
+import { Container } from "react-bootstrap";
 
 interface Props {
     /**
@@ -14,25 +15,30 @@ interface Props {
      * Drop event handler
      */
     onDrop: (any) => void;
+    /**
+     * Dropzone's child elements
+     */
+    children?: any;
 }
-const DropZone = (props: Props) => {
-    const { className, style, onDrop } = props;
 
-    const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+const DropZone = (props: Props) => {
+    const { className, style, onDrop, children } = props;
+
+    const { getRootProps, getInputProps } = useDropzone({
         onDrop,
         accept: ".fit, .tcx, .gpx"
     });
-    //@ts-ignore
-    const files = acceptedFiles.map((file) => (
-        //@ts-ignore
-        <li key={file.path}>{file.name}</li>
-    ));
+
     return (
-        <div {...getRootProps()}>
+        <Container
+            {...getRootProps({
+                className: className,
+                style: style
+            })}
+        >
             <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
-            <ul>{files}</ul>
-        </div>
+            {children}
+        </Container>
     );
 };
 

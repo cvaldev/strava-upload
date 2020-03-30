@@ -38,24 +38,14 @@ export const upload = () => {
     return multer({ dest: tmpdir(), fileFilter: fileFilter });
 };
 
-export const uploadFile = async (
+export const getUserActivities = (
     accessToken: string,
-    dataType: string,
-    file: string
-): Promise<[any, any]> => {
-    try {
-        const payload = await strava.uploads.post(
-            {
-                access_token: accessToken,
-                data_type: dataType,
-                file: file
-            },
-            () => {}
-        );
-
-        deleteTempFile(file);
-        return [payload, null];
-    } catch (error) {
-        return [null, error];
-    }
+    page?: number,
+    perPage?: number
+) => {
+    return strava.athlete.listActivities({
+        access_token: accessToken,
+        page: page,
+        per_page: perPage
+    });
 };
