@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Button from "react-bootstrap/Button";
 import { CSSProperties } from "react";
 
 interface Props {
@@ -16,9 +15,8 @@ const StravaConnect = (props: Props) => {
     const { className, style } = props;
     return (
         <Link href="/oauth/strava">
-            <Button className={className} style={style}>
-                Connect to Strava
-            </Button>
+            {/* <a href="/oauth/strava" className={className}></a> */}
+            <div className={className} style={style} />
         </Link>
     );
 };

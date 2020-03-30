@@ -20,11 +20,12 @@ export const NewUserLayout = () => {
             <Row style={{ paddingTop: "2em" }}>
                 <Col>
                     <StravaConnect
-                        style={{
-                            backgroundColor: "white",
-                            color: "black",
-                            border: "2px solid rgba(252, 76, 2, 1)"
-                        }}
+                        className="strava-connect"
+                        // style={{
+                        //     backgroundColor: "white",
+                        //     color: "black",
+                        //     border: "2px solid rgba(252, 76, 2, 1)"
+                        // }}
                     />
                 </Col>
             </Row>
