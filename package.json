@@ -4,7 +4,6 @@
     "description": "",
     "main": "dist/index.js",
     "scripts": {
-        "dev": "npx ts-node-dev  --respawn --transpileOnly server.ts",
         "test": "jest",
         "dev": "ts-node-dev --ignore-watch .next/ --project tsconfig.server.json --respawn --transpileOnly index.ts",
         "build": "rimraf dist .next && next build && tsc --project tsconfig.server.json",
