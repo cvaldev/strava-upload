@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { extname } from "path";
-import { deleteTempFile } from "../../../utils";
-import strava from "strava-v3";
+import { uploadFile } from "../../../utils";
 import { IUser } from "../../../interfaces";
 import { logger, errLogger } from "../../../logger";
 
@@ -31,33 +30,10 @@ const uploadFilesToStrava = async (req: Request, res: Response) => {
             uploads.push(payload);
         } else {
             errLogger.error(`Failed to upload file! ${error}. User:${id}`);
-            deleteTempFile(path);
         }
     }
 
     return res.json({ uploads });
-};
-
-const uploadFile = async (
-    accessToken: string,
-    dataType: string,
-    file: string
-): Promise<[any, any]> => {
-    try {
-        const payload = await strava.uploads.post(
-            {
-                access_token: accessToken,
-                data_type: dataType,
-                file: file
-            },
-            () => {}
-        );
-
-        deleteTempFile(file);
-        return [payload, null];
-    } catch (error) {
-        return [null, error];
-    }
 };
 
 export default uploadFilesToStrava;
