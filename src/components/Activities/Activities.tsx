@@ -1,11 +1,19 @@
 import fetch from "isomorphic-unfetch";
 import { Container, ListGroup, Alert } from "react-bootstrap";
-import { Component } from "react";
+import { Component, CSSProperties } from "react";
 import { Activity } from "./Activity";
 
 interface IProps {
     page?: number;
     perPage?: number;
+    /**
+     * Defines the class of the activities.
+     */
+    className?: string;
+    /**
+     * Defines the style of the activities.
+     */
+    style?: CSSProperties;
 }
 
 interface IState {
@@ -615,7 +623,11 @@ export class Activities extends Component<IProps, IState> {
         // const { activities } = this.state;
 
         return (
-            <ListGroup variant="flush" className="activities">
+            <ListGroup
+                className={this.props.className}
+                style={this.props.style}
+                variant="flush"
+            >
                 {activities.map((activity) => (
                     <Activity activity={activity} />
                 ))}
