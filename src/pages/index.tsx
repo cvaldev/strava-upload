@@ -6,7 +6,6 @@ interface IndexProps {
 
 const Index: NextPage<IndexProps> = (props: IndexProps) => {
     const { isAuthenticated } = props;
-    return <ReturnUserLayout />;
     if (isAuthenticated) {
         return <ReturnUserLayout />;
     } else {

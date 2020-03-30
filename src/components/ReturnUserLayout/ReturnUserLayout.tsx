@@ -14,17 +14,30 @@ export const ReturnUserLayout = () => {
                     >
                         <FileUpload uploadUrl="/api/upload" max={5} />
                     </Col>
-                    <Col className="overflow-auto activities align-self-center">
-                        <h1
+                    <Col
+                        className="activities align-self-center "
+                        style={{ height: "75%" }}
+                    >
+                        <Row
                             style={{
-                                marginBottom: "10px",
-                                textAlign: "center"
+                                width: "100%",
+                                marginBottom: "20px"
                             }}
                         >
-                            Activities
-                        </h1>
-
-                        <Activities page={1} />
+                            <h1
+                                style={{
+                                    width: "100%",
+                                    textAlign: "center"
+                                }}
+                            >
+                                Latest Activities
+                            </h1>
+                        </Row>
+                        <Row className="overflow-auto">
+                            <Col>
+                                <Activities page={1} />
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
