@@ -1,16 +1,13 @@
 # strava-upload
 
-Easily upload files to Strava through the strava-upload-cli(Coming soon&trade;...), or through the web (Also coming soon&trade;...).
+Easily upload files from your devices directly to your Strava profile without the hassle. 
 
 ## How to use
-Start the OAuth flow by making a `GET` request to 
 
-`/oauth/strava`
-
-Authenticate with Strava and give permission to upload files to your profile. If using the website (Soon&trade;.️) you can now upload your files :D. 
+If you're using the website, simply connect to Strava, give the app the permissions it asks for and then you are good to go.
 
 ### Get a token
-> Keep this token private, tokens may expire and have limits in the future.
+> ⚠️ Keep this token private!
 
 By default, sessions are used to maintain a user authenticated, but if you need an access token you can request it at:
 
@@ -18,31 +15,20 @@ By default, sessions are used to maintain a user authenticated, but if you need 
 
 ### Upload your files
 
-If you're using a token, you'll need to send a `POST` request:
+If you're using a token, you'll need to send a `POST` request to:
 
 `/api/upload`
 
-Set the header `Authorization: Bearer <access_token>`.
+Set the header `Authorization: Bearer <access_token>`. The API will accept an array of up to 25 files under a `file` field.
 
 Supported File Types:
 - FIT
 - TCX
 - GPX
 
-## Testing
-
-```
-npm run test
-```
-or:
-
-```
-npx jest
-```
-
 ## Building and running
 
-You will need to first [register on strava](https://www.strava.com/register) and then [create an app](https://www.strava.com/settings/api). You're also going to need a database. Once you have done those things, create an `.env` file in the root directory, it should look like this:
+You will need to first [register on strava](https://www.strava.com/register) and then [create an app](https://www.strava.com/settings/api). You're also going to need a database. Once you have done those things, create an `.env` file in the root directory that looks like this:
 
 ```
 CLIENT_ID=<YOUR_CLIENT_ID>
@@ -59,8 +45,21 @@ npm install
 npm start
 ```
 
-If you want to watch the files while developing:
+You can watch the files while working on them with:
 
 ```
 npm run dev
 ```
+
+## Testing
+
+There's no need for an `.env` file to test, a mock configuration and database connection are used to run the tests. 
+
+Simply run:
+```
+npm run test
+```
+
+## But... Why?
+
+I wanted to automate uploading files to Strava from my Garmin watch when I'm on a Linux system. Initially I just wanted to make a CLI but since I had to make a back end and handle OAuth anyway I figured it was a good opportunity to play around with NextJS to create something that passes for a UI.
