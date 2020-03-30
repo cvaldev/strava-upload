@@ -62,4 +62,4 @@ npm run test
 
 ## But... Why?
 
-I wanted to automate uploading files to Strava from my Garmin watch when I'm on a Linux system. Initially I just wanted to make a CLI but since I had to make a back end and handle OAuth anyway I figured it was a good opportunity to play around with NextJS to create something that passes for a UI.
+I wanted to automate the process of uploading files to Strava from my Garmin watch from a Linux system. Initially I was just going to make a CLI, but since I had to make a back end and handle OAuth anyway I figured it was a good opportunity to play around with NextJS to create something that sort of passes for a UI.
