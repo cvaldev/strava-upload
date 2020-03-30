@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import authService from "../../../authorization";
+import authService from "../../../authService";
 
 const login = (req: Request, res: Response, next: NextFunction) => {
     const state = req.query?.state;

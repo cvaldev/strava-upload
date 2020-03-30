@@ -1,4 +1,4 @@
-import authService from "../../authorization";
+import authService from "../../authService";
 import express from "express";
 import {
     uploadFilesToStrava,

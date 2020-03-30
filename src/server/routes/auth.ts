@@ -1,5 +1,5 @@
 import express from "express";
-import authService from "../../authorization";
+import authService from "../../authService";
 import { login, redirect } from "../controllers";
 
 /**

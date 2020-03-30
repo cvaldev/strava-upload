@@ -1,5 +1,5 @@
 import express from "express";
-import authService from "../authorization";
+import authService from "../authService";
 import authRouter from "./routes/auth";
 import apiRouter from "./routes/api";
 import { join } from "path";

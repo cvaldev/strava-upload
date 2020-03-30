@@ -1,4 +1,4 @@
-import authService from "../../src/authorization";
+import authService from "../../src/authService";
 import passport from "passport";
 import jsonwebtoken from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
