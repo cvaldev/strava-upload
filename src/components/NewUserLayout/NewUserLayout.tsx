@@ -13,7 +13,7 @@ export const NewUserLayout = () => {
                             fontSize: "5em"
                         }}
                     >
-                        Strava-Upload
+                        strupload
                     </h1>
                 </Col>
             </Row>
