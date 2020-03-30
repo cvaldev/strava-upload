@@ -1,0 +1,97 @@
+html,
+body,
+#__next {
+    margin: 0;
+    height: 100%;
+}
+body,
+#__next {
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 0;
+}
+.default-background {
+    height: 100%;
+    background: linear-gradient(
+        355deg,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 1) 10%,
+        rgba(252, 76, 2, 1) calc(10% + 1px),
+        rgba(252, 76, 2, 1) 100%
+    );
+}
+
+.reverse-background {
+    height: 100%;
+    background: linear-gradient(
+        355deg,
+        rgba(252, 76, 2, 1),
+        rgba(252, 76, 2, 1) 10%,
+        rgba(255, 255, 255, 1) calc(10% + 1px),
+        rgba(255, 255, 255, 1) 100%
+    );
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    height: 2.5rem;
+}
+.special {
+    height: 100%;
+}
+
+.back-text {
+    text-align: center;
+    padding-top: 10%;
+    color: rgba(252, 76, 2, 0.5);
+}
+
+.dropzone {
+    border: 2px solid rgb(252, 76, 2);
+    min-height: 15em;
+    border-radius: 15px;
+}
+
+.dropzone:hover {
+    cursor: pointer;
+}
+.upload-btn {
+    background-color: rgb(252, 76, 2);
+    border: 2px solid rgb(252, 76, 2);
+}
+.upload-btn:disabled {
+    background-color: rgb(252, 76, 2);
+    cursor: default;
+    border: 2px solid rgb(252, 76, 2);
+}
+.upload-btn:hover:enabled {
+    background-color: white;
+    color: rgb(252, 76, 2);
+    border: 2px solid rgb(252, 76, 2);
+}
+
+.upload-btn:focus {
+    background-color: rgb(252, 76, 2);
+    border: 2px solid rgb(252, 76, 2);
+}
+
+.file-list {
+    color: rgba(252, 76, 2, 0.5);
+    list-style-type: none;
+}
+
+.activities {
+    margin-left: 10%;
+}
+
+.overflow-auto {
+    max-height: 75%;
+    overflow: auto;
+    border: 2px solid rgb(252, 76, 2);
+    padding: 0 5% 0 5%;
+    width: 100%;
+    border-radius: 20px 0 0 20px;
+}

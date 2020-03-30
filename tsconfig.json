@@ -1,16 +1,24 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "outDir": "dist",
+        "target": "esnext",
+        "module": "esnext",
         "sourceMap": false,
         "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
         "paths": {
             "*": ["node_modules/"],
             "typings/*": ["src/typings/*"]
-        }
-    },
-    "include": ["src/**/*.ts", "app.ts", "server.ts"],
-    "exclude": ["src/test/**/*.spec.ts", "**/*.test.ts", "**/__mocks__/"]
+        },
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "jsx": "preserve",
+        "isolatedModules": true
+    }
 }

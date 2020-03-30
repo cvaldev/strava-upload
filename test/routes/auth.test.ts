@@ -1,7 +1,7 @@
-import { router } from "../../src/routes/auth";
-import * as express from "express";
-import * as request from "supertest";
-import * as passport from "passport";
+import router from "../../src/server/routes/auth";
+import express from "express";
+import request from "supertest";
+import passport from "passport";
 
 const app = express();
 app.use(router);
@@ -21,7 +21,7 @@ describe("/", () => {
 });
 
 describe("/redirect", () => {
-    test("Can GET /redirect", async () => {
+    test("Redirects to home if succesful auth", async () => {
         jest.spyOn(
             passport,
             "authenticate"
@@ -29,7 +29,8 @@ describe("/redirect", () => {
 
         const response = await request(app).get(`/redirect`);
 
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(302);
+        expect(response.header.location).toBe("/");
     });
 
     test("Restarts oauth flow if not authenticated", async () => {
