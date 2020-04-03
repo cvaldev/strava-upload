@@ -8,20 +8,10 @@ const root = process.cwd();
 LogService.base = join(root, "logs");
 
 if (configuration.env !== "test") {
-    if (!existsSync(LogService.base)) {
-        try {
-            mkdirSync(LogService.base);
-        } catch (e) {
-            console.log(e);
-        }
-    }
     configure({
         appenders: {
-            multi: {
-                type: "multiFile",
-                base: LogService.base,
-                property: "categoryName",
-                extension: ".log"
+            server: {
+                type: "stdout"
             },
             err: {
                 type: "stderr"
@@ -29,7 +19,7 @@ if (configuration.env !== "test") {
         },
         categories: {
             default: {
-                appenders: ["multi"],
+                appenders: ["server"],
                 level: "debug"
             },
             err: { appenders: ["err"], level: "error", enableCallStack: true }
