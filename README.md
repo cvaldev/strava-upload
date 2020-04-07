@@ -6,6 +6,8 @@ Easily upload files from your devices directly to your Strava profile without th
 
 If you're using the website, simply connect to Strava, give the app the permissions it asks for and then you are good to go.
 
+There is also another way to use it which is with (strupload-auto)[https://github.com/cvaldev/strupload-auto], which makes it so that your devices stay sync'd with Strava.
+
 ### Get a token
 > ⚠️ Keep this token private!
 
@@ -62,4 +64,4 @@ npm run test
 
 ## But... Why?
 
-I wanted to automate the process of uploading files to Strava from my Garmin watch from a Linux system. Initially I was just going to make a CLI, but since I had to make a back end and handle OAuth anyway I figured it was a good opportunity to play around with NextJS to create something that sort of passes for a UI.
+I wanted to automate the process of uploading files to Strava from my Garmin watch but I mainly use a Linux system. Initially I was just going to make a CLI, but since I had to make a back end and handle OAuth anyway I figured it was a good opportunity to play around with NextJS to make something that sort of passes for a UI.
