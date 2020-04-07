@@ -6,7 +6,7 @@ Easily upload files from your devices directly to your Strava profile without th
 
 If you're using the website, simply connect to Strava, give the app the permissions it asks for and then you are good to go.
 
-There is also another way to use it which is with [strupload-auto](https://github.com/cvaldev/strupload-auto), which makes it so that your devices stay sync'd with Strava.
+There is also another way to use it, with [strupload-auto](https://github.com/cvaldev/strupload-auto) so that your devices can easily stay sync'd with Strava.
 
 ### Get a token
 > ⚠️ Keep this token private!
