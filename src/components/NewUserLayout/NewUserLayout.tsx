@@ -10,7 +10,7 @@ export const NewUserLayout = () => {
                     <h1
                         style={{
                             textAlign: "center",
-                            fontSize: "5em"
+                            fontSize: "5em",
                         }}
                     >
                         strupload
@@ -19,14 +19,7 @@ export const NewUserLayout = () => {
             </Row>
             <Row style={{ paddingTop: "2em" }}>
                 <Col>
-                    <StravaConnect
-                        className="strava-connect"
-                        // style={{
-                        //     backgroundColor: "white",
-                        //     color: "black",
-                        //     border: "2px solid rgba(252, 76, 2, 1)"
-                        // }}
-                    />
+                    <StravaConnect />
                 </Col>
             </Row>
         </Layout>
